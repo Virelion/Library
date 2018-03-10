@@ -1,0 +1,34 @@
+html{
+    background: #ececec;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.active {
+    font-weight: bold;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+/* nav bar */
+nav {
+    background: #303030;
+}
+
+nav a{
+    display: inline-block;
+    padding: 2vh 2vw;
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover{
+    opacity:0.9;
+    background: rgba(0,0,0,0.1);
+}
