@@ -1,0 +1,18 @@
+.LabeledInput {
+    display: block;
+    clear: both;
+}
+
+.LabeledInput input{
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    border: 0;
+    box-shadow: 0px 0px 3px grey;
+}
+
+.LabeledInput-label {
+    width: 10vw;
+    min-width: 150px;
+    display: inline-block;
+}

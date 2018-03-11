@@ -15,7 +15,9 @@ h1 {
   text-align: center;
 }
 
-
+.app_root {
+    padding: 10px 10px;
+}
 /* nav bar */
 nav {
     background: #303030;

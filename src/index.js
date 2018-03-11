@@ -1,12 +1,14 @@
 // index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import About from './components/About';
 import App from './components/App';
 import NotFound from './components/NotFound';
 import AccountControll from './components/AccountControll' ;
 import CustomNavLink from './components/CustomNavLink' ;
+import Register from './components/Register' ;
+import SignIn from './components/SignIn' ;
 import './index.css';
 
 ReactDOM.render(
@@ -17,11 +19,15 @@ ReactDOM.render(
         <CustomNavLink to='/about'>About</CustomNavLink>
         <AccountControll logged={false} />
     </nav>
-        <Switch>
-            <Route path='/' exact component={App} />
-            <Route path='/about' component={About} />
-            <Route component={NotFound} />
-        </Switch>
+        <div className='app_root'>
+            <Switch>
+                <Route path='/' exact component={App} />
+                <Route path='/about' component={About} />
+                <Route path='/register' component={Register} />
+                <Route path='/sign_in' component={SignIn} />
+                <Route component={NotFound} />
+            </Switch>
+        </div>
     </div>
 </BrowserRouter>,
 document.getElementById('root')

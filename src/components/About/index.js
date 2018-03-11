@@ -10,7 +10,7 @@ export default class About extends Component {
   render() {
     Helper.title.set("About");
     return (
-      <div class={this.constructor.name} >
+      <div className={this.constructor.name} >
         <h1>
           About
         </h1>

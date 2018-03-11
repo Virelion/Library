@@ -1,4 +1,4 @@
-var Helper = Helper || {};
+var Helper = {};
 
 //title
 Helper.websiteName = "Library";

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NavLink from 'react-dom'
 import './style.css';
 import Helper from './../../Helper';
 import CustomNavLink from './../CustomNavLink';
@@ -19,8 +18,9 @@ export default class AccountControll extends Component {
         );
     } else {
         return (
-          <div class={this.constructor.name} >
-            <CustomNavLink to='/sign-in'>Sign in</CustomNavLink>
+          <div className={this.constructor.name} >
+            <CustomNavLink to='/sign_in'>Sign in</CustomNavLink>
+            <CustomNavLink to='/register'>Register</CustomNavLink>
           </div>
         );
     }

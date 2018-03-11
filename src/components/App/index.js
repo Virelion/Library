@@ -10,7 +10,7 @@ export default class App extends Component {
   render() {
     Helper.title.reset();
     return (
-      <div class={this.constructor.name} >
+      <div className={this.constructor.name} >
         <h1>
           App
         </h1>
