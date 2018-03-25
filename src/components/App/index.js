@@ -12,8 +12,10 @@ export default class App extends Component {
     return (
       <div className={this.constructor.name} >
         <h1>
-          App
-        </h1>
+        Simple library </h1>
+        <p>
+                    Find your reading experience enhanced with moder library technology. Find your book and borrow it without even geting out from home. Do not worry we will hadle everything.
+                    </p>
       </div>
     );
   }

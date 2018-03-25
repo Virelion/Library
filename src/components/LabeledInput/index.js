@@ -1,6 +1,5 @@
 // src/components/About/index.js
 import React, { Component } from 'react';
-import Helper from './../../Helper';
 
 import './style.css';
 

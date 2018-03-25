@@ -17,6 +17,8 @@ h1 {
 
 .app_root {
     padding: 10px 10px;
+    width: 1000px;
+    margin: auto;
 }
 /* nav bar */
 nav {

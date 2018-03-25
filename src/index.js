@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import About from './components/About';
+import Library from './components/Library';
 import App from './components/App';
 import NotFound from './components/NotFound';
 import AccountControll from './components/AccountControll' ;
@@ -11,18 +11,20 @@ import Register from './components/Register' ;
 import SignIn from './components/SignIn' ;
 import './index.css';
 
+
+
 ReactDOM.render(
 <BrowserRouter>
     <div>
     <nav>
         <CustomNavLink to='/'>Home</CustomNavLink>
-        <CustomNavLink to='/about'>About</CustomNavLink>
+        <CustomNavLink to='/library'>Library</CustomNavLink>
         <AccountControll logged={false} />
     </nav>
         <div className='app_root'>
             <Switch>
                 <Route path='/' exact component={App} />
-                <Route path='/about' component={About} />
+                <Route path='/library' component={Library} />
                 <Route path='/register' component={Register} />
                 <Route path='/sign_in' component={SignIn} />
                 <Route component={NotFound} />
