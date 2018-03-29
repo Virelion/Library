@@ -1,6 +1,7 @@
 // src/components/About/index.js
 import React, { Component } from 'react';
 import Helper from './../../Helper';
+import LoadingIco from '../LoadingIco';
 import './style.css';
 
 export default class Register extends Component {
@@ -13,18 +14,22 @@ export default class Register extends Component {
       this.state = {
           search: "",
           error: null,
-          isLoaded: false,
+          loaded: false,
           items: []
       }
   }
   
   handleChange(event){
-      this.setState({search: event.target.value, items:[{_id:"1",author:"a",title:"b",avaliable:"3"}]});
+      this.setState({loaded:true,search: event.target.value});
+      fetch("/api/search/books/"+event.target.value)
+              .then(res => res.json())
+              .then(data => this.setState({items: data}));
   }
-
+  
   render() {
     console.log("Render");
     Helper.title.set("Search");
+   
     return (
       <div className={this.constructor.name} >
         <input type="text" name="search-field" value={this.state.search} onChange={this.handleChange.bind(this)} />

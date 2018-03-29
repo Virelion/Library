@@ -1,11 +1,21 @@
 var express = require('express');
 var app = express();
 
-app.get('/search/smt', (req,res)=>{
+
+app.get('/api/search/books/', (req,res)=>{
    res.send([
        {
            author: "Guy",
-           title: "asdf",
+           title: "All",
+           avaliable: 2
+       }
+   ]);
+});
+app.get('/api/search/books/:phrase', (req,res)=>{
+   res.send([
+       {
+           author: "Guy",
+           title: req.params.phrase,
            avaliable: 2
        }
    ]);
