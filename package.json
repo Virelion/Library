@@ -2,11 +2,15 @@
   "name": "library",
   "version": "0.1.0",
   "private": true,
-    "proxy": "http://localhost:9000/",
+  "proxy": "http://localhost:9000/",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
     "classnames": "^2.2.5",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.0.14",
     "morgan": "^1.9.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -15,7 +19,8 @@
     "react-scripts": "1.1.1"
   },
   "scripts": {
-    "all" : "npm run start & npm run server:start",
+    "deploy": "node server/deploy.js",
+    "all": "npm run server:start & npm run start",
     "start": "react-scripts start",
     "server:start": "node server",
     "build": "react-scripts build",

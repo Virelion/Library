@@ -1,20 +1,49 @@
-import Mongoose from 'mogoose'
+const Mongoose = require('mongoose');
+const config = require('./config');
 
-var Book = new Schema({
+Mongoose.connect(config.database);
+
+var UserSchema = new Mongoose.Schema({
     id: Mongoose.Schema.ObjectId,
-    title: { type: String, required: true },
-    available: { type: Boolean, required: true },
-    authors: [ {type : Mongoose.Schema.ObjectId, ref : 'Author'} ]
+    name: { type: String, required: true },
+    hash: { type: String, required: true },
+    admin: { type: Boolean, required: true}
 });
 
-var Author = new Schema({
+var TeamSchema = new Mongoose.Schema({
     id: Mongoose.Schema.ObjectId,
-    name: { type: String, default: '' },
-    surname: { type: String, default: '' },
-    books: [ {type : Mongoose.Schema.ObjectId, ref : 'Book'} ]
+    name: { type: String, required: true },
+    members: [
+        {type : Mongoose.Schema.ObjectId, ref : 'users'}
+    ]
 });
 
-export var module ={
-    Book: Book,
-    Author: Author
+var RetrospectiveSchema = new Mongoose.Schema({
+    id: Mongoose.Schema.ObjectId,
+    name: { type: String, required: true },
+    date: { type: Date, required: true },
+    team: {type : Mongoose.Schema.ObjectId, ref : 'teams'},
+    issues: [
+        {type : Mongoose.Schema.ObjectId, ref : 'issues'}
+    ]
+});
+
+var IssueSchema = new Mongoose.Schema({
+    id: Mongoose.Schema.ObjectId,
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    type: ['SAD','HAPPY','ANGRY','PROUD','CONFUSED']
+});
+
+
+var User = Mongoose.model('users', UserSchema);
+var Team = Mongoose.model('teams', TeamSchema);
+var Retrospective = Mongoose.model('retrospectives', RetrospectiveSchema);
+var Issue = Mongoose.model('issues', IssueSchema);
+
+module.exports ={
+    User: User,
+    Team: Team,
+    Retrospective: Retrospective,
+    Issue: Issue
 };

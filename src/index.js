@@ -11,8 +11,6 @@ import Register from './components/Register' ;
 import SignIn from './components/SignIn' ;
 import './index.css';
 
-
-
 ReactDOM.render(
 <BrowserRouter>
     <div>

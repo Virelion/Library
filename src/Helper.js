@@ -1,7 +1,7 @@
+const config = require('./config');
 var Helper = {};
 
-//title
-Helper.websiteName = "Library";
+Helper.websiteName = "scrumbox";
 Helper.title = Helper.title || {};
 
 Helper.title.set = (title) =>{
@@ -10,6 +10,10 @@ Helper.title.set = (title) =>{
 
 Helper.title.reset = (title) =>{
     document.title = Helper.websiteName;
+};
+
+Helper.getConfig = function (){
+    return config;
 };
 
 export default Helper;

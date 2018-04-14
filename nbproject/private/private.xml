@@ -3,28 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/maciek/git/library/src/components/SignIn/index.js</file>
-            <file>file:/home/maciek/git/library/src/components/Register/index.js</file>
-            <file>file:/home/maciek/git/library/server/index.js</file>
-            <file>file:/home/maciek/git/library/src/Helper.js</file>
-            <file>file:/home/maciek/git/library/src/components/CustomNavLink/index.js</file>
-            <file>file:/home/maciek/git/library/src/components/Register/style.css</file>
-            <file>file:/home/maciek/git/library/src/components/AccountControll/style.css</file>
-            <file>file:/home/maciek/git/library/src/components/LabeledInput/index.js</file>
-            <file>file:/home/maciek/git/library/src/components/CustomNavLink/style.css</file>
-            <file>file:/home/maciek/git/library/server/app.js</file>
-            <file>file:/home/maciek/git/library/src/components/Library/index.js</file>
-            <file>file:/home/maciek/git/library/src/index.css</file>
-            <file>file:/home/maciek/git/library/public/index.html</file>
-            <file>file:/home/maciek/git/library/package.json</file>
-            <file>file:/home/maciek/git/library/src/components/AccountControll/index.js</file>
-            <file>file:/home/maciek/git/library/src/components/NotFound/index.js</file>
-            <file>file:/home/maciek/git/library/src/components/Search/index.js</file>
-            <file>file:/home/maciek/git/library/src/components/LabeledInput/style.css</file>
-            <file>file:/home/maciek/git/library/src/index.js</file>
-            <file>file:/home/maciek/git/library/src/db.js</file>
-            <file>file:/home/maciek/git/library/src/components/App/index.js</file>
-            <file>file:/home/maciek/git/library/src/components/NotFound/style.css</file>
+            <file>file:/D:/IdeaProjects/Library/package-lock.json</file>
+            <file>file:/D:/IdeaProjects/Library/src/components/AccountControll/index.js</file>
+            <file>file:/D:/IdeaProjects/Library/src/Helper.js</file>
+            <file>file:/D:/IdeaProjects/Library/src/components/SignIn/index.js</file>
+            <file>file:/D:/IdeaProjects/Library/src/components/Search/index.js</file>
+            <file>file:/D:/IdeaProjects/Library/src/index.js</file>
+            <file>file:/D:/IdeaProjects/Library/src/components/App/index.js</file>
+            <file>file:/D:/IdeaProjects/Library/package.json</file>
+            <file>file:/D:/IdeaProjects/Library/server/index.js</file>
         </group>
     </open-files>
 </project-private>

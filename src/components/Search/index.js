@@ -21,7 +21,7 @@ export default class Register extends Component {
   
   handleChange(event){
       this.setState({loaded:true,search: event.target.value});
-      fetch("/api/search/books/"+event.target.value)
+      fetch(Helper.getConfig().api.location+"/search/books/"+event.target.value)
               .then(res => res.json())
               .then(data => this.setState({items: data}));
   }
