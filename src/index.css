@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 html{
     background: #ececec;
 }
@@ -35,4 +39,22 @@ nav a{
 nav a:hover{
     opacity:0.9;
     background: rgba(0,0,0,0.1);
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+    background: white;
+    box-sizing: border-box;
+}
+
+input{
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 0;
+    box-shadow: 0px 0px 3px grey;
+    display: block;
+    clear: both;
+    min-width: 200px;
+    margin: auto;
+    margin-bottom: 5px;
 }
