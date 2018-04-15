@@ -13,6 +13,7 @@ export default class ManageAccount extends Component {
         this.setState({
             logged: Session.getSessionItem(Session.user),
             message: false,
+            success: false,
             passwordRepeat: '',
             password: ''
         });
@@ -35,9 +36,13 @@ export default class ManageAccount extends Component {
             var payload = {
                 password: this.state.password,
             };
-            Helper.postWithToken('/changePassword',payload);
+            Helper.postWithToken('/changePassword',payload)
+            .then(res => res.json())
+            .then(data =>{ 
+                this.setState({message: data.message, success: data.success});
+            })
         } else {
-            this.setState({message: "Passwords not match or to short (8 characters min)"});
+            this.setState({message: "Passwords not match or to short (8 characters min)", success: false});
         }
     }
     
@@ -46,7 +51,7 @@ export default class ManageAccount extends Component {
             return (
                 <form onSubmit={this.changePassword.bind(this)}>
                     <div className={this.constructor.name}  >
-                        <MessageBox message={this.state.message} type="MessageBox-negative" />
+                        <MessageBox message={this.state.message} success={this.state.success} />
                         <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange.bind(this)} />
                         <input type="password" name="passwordRepeat" placeholder="Repeat password" value={this.state.passwordRepeat} onChange={this.handlePasswordRepeatChange.bind(this)} />
                         <input type="submit" value="Accept" />

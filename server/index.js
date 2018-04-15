@@ -4,7 +4,7 @@ const session = require('express-session');
 const config = require('./config');
 const helper = require('./helper');
 const db = require('./db');
-const jwt = require('jsonwebtoken');
+const userSession = require('./userSession');
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 
@@ -65,9 +65,7 @@ app.post('/api/sign-in',(req,res)=>{
                 admin: user.admin
             };
 
-            var token = jwt.sign(payload, app.get('superSecret'), {
-                expiresIn: 1440
-            });
+            var token = userSession.sign(payload);
 
             res.send({
                 success: true,
@@ -81,9 +79,20 @@ app.post('/api/sign-in',(req,res)=>{
     });
 });
 
+
 app.post('/api/changePassword',(req,res)=>{
-   console.log(req.body);
-   //jwt.verify
+    var userData = userSession.decode(req);
+    var newPass = req.body.password;
+    db.User.findOne({_id:userData.name},(err,user)=>{
+        user.set({hash:bcrypt.hashSync(newPass, 10)});
+        user.save((err)=>{
+            if(err) {
+                res.send(helper.message("Cannot change password",false));
+            } else {
+                res.send(helper.message("Password changed",true));
+            }
+        });
+    });
 });
 
 app.post('/api/sign-out',(req,res)=>{

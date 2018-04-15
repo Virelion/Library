@@ -18,17 +18,11 @@ export default class AccountControll extends Component {
         if(logged){
             return (
                 <div className={this.constructor.name} >
-                    <NavLink to='/' onClick={this.signOut.bind(this)}>Sign Out</NavLink>
+                    <NavLink to='/' onClick={this.signOut.bind(this)} exact>Sign Out</NavLink>
                     <CustomNavLink to='/account'>{logged.user.name}</CustomNavLink>
                 </div>
             );
-        } else {
-            return (
-                <div className={this.constructor.name} >
-                    <CustomNavLink to='/sign_in'>Sign in</CustomNavLink>
-                    <CustomNavLink to='/register'>Register</CustomNavLink>
-                </div>
-            );
-        }
+        } 
+        return(null);
     }
 };

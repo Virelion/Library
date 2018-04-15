@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/index.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/Helper.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/SignIn/index.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/Session.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/AccountControll/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/App/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/server/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/ManageAccount/index.js</file>
         </group>
     </open-files>
 </project-private>
