@@ -16,7 +16,6 @@ app.use(bodyParser.json());
 
 app.set('superSecret',config.secret);
 
-// Add headers
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', config.app);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -45,6 +44,8 @@ app.get('/api/search/books/:phrase', (req,res)=>{
    ]);
 });
 
+
+//Account 
 app.post('/api/sign-in',(req,res)=>{
     db.User.findOne({_id: req.body.name},(err,user)=>{
         if(err) {
@@ -71,9 +72,8 @@ app.post('/api/sign-in',(req,res)=>{
 });
 
 app.post('/api/changePassword',(req,res)=>{
-    var userData = userSession.decode(req);
-    var newPass = req.body.password;
-    db.User.findOne({_id:userData.name},(err,user)=>{
+    userSession.asUser(req,res,(user)=>{
+        var newPass = req.body.password;
         user.set({hash:bcrypt.hashSync(newPass, 10)});
         user.save((err)=>{
             if(err) {
@@ -84,5 +84,21 @@ app.post('/api/changePassword',(req,res)=>{
         });
     });
 });
+
+//Team
+app.post('/api/team/create',(req,res)=>{
+    userSession.asAdmin(req,res,(admin)=>{
+        var team = new db.Team({name: req.body.name});
+        team.save((err)=>{
+            if(err){
+                res.send({message:helper.message("Error while creating team",false)});
+            } else {
+                res.send({message:helper.message("Team created",true)});
+            }
+        });
+    });
+});
+
+
 
 app.listen(9000);
