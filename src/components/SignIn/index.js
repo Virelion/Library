@@ -14,10 +14,10 @@ export default class SignIn extends Component {
     constructor(props){
         super(props);
         this.state = {
-          user: "",
-          password: "",
-          message: false,
-          logged: false
+            user: "",
+            password: "",
+            message: false,
+            logged: false
         }
     }
 

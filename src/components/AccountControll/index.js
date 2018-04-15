@@ -30,17 +30,17 @@ export default class AccountControll extends Component {
     render() {
         if(this.state.logged){
             return (
-              <div class={this.constructor.name} >
-                <CustomNavLink to='/sign_in' onClick={this.signOut.bind(this)}>Sign Out</CustomNavLink>
-                <CustomNavLink to='/account'>{this.state.logged.user.name}</CustomNavLink>
-              </div>
+                <div class={this.constructor.name} >
+                    <CustomNavLink to='/sign_in' onClick={this.signOut.bind(this)}>Sign Out</CustomNavLink>
+                    <CustomNavLink to='/account'>{this.state.logged.user.name}</CustomNavLink>
+                </div>
             );
         } else {
             return (
-              <div className={this.constructor.name} >
-                <CustomNavLink to='/sign_in'>Sign in</CustomNavLink>
-                <CustomNavLink to='/register'>Register</CustomNavLink>
-              </div>
+                <div className={this.constructor.name} >
+                    <CustomNavLink to='/sign_in'>Sign in</CustomNavLink>
+                    <CustomNavLink to='/register'>Register</CustomNavLink>
+                </div>
             );
         }
     }
