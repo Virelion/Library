@@ -9,10 +9,21 @@ export default class LabeledInput extends Component {
   state = {}
 
   render() {
-    return (
-        <label className={this.constructor.name}>
-            <span className='LabeledInput-label'>{this.props.label}</span> <input {...this.props} />
-        </label>
-    );
+    if(this.props.label){
+        return (
+            <label className={this.constructor.name}>
+                <span className='LabeledInput-label'>{this.props.label}</span> 
+
+                <input {...this.props} />
+            </label>
+        );
+    }
+    else {
+        return (
+            <label className={this.constructor.name}>
+                <input {...this.props} />
+            </label>
+        );
+    }
   }
 };

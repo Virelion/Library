@@ -1,11 +1,18 @@
-var express = require('express');
-var app = express();
-var session = require('express-session');
-var config = require('./config');
-var helper = require('./helper');
-var db = require('./db');
-var jwt = require('jsonwebtoken');
+const express = require('express');
+const app = express();
+const session = require('express-session');
+const config = require('./config');
+const helper = require('./helper');
+const db = require('./db');
+const jwt = require('jsonwebtoken');
+const bodyParser = require("body-parser");
+const bcrypt = require("bcryptjs");
 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
 
 app.set('superSecret',config.secret);
 
@@ -36,6 +43,7 @@ app.get('/api/search/books/', (req,res)=>{
        }
    ]);
 });
+
 app.get('/api/search/books/:phrase', (req,res)=>{
    res.send([
        {
@@ -47,14 +55,14 @@ app.get('/api/search/books/:phrase', (req,res)=>{
 });
 
 app.post('/api/sign-in',(req,res)=>{
-    db.User.find({name: req.body.name},(err,user)=>{
+    db.User.findOne({_id: req.body.name},(err,user)=>{
         if(err) {
-            res.json({success: false});
+            res.send({success: false});
             return;
         }
-        if(user && user.hash === req.body.hash){
+        if(user && bcrypt.compareSync(req.body.password,user.hash)){
             const payload = {
-                user: user.name,
+                name: user.name,
                 admin: user.admin
             };
 
@@ -62,18 +70,17 @@ app.post('/api/sign-in',(req,res)=>{
                 expiresIn: 1440
             });
 
-            res.json({
+            res.send({
                 success: true,
-                token: token
+                token: token,
+                user: payload
             });
         }
     });
 });
 
 app.post('/api/sign-out',(req,res)=>{
-   req.session.user = null;
-   res.send(helper.message("SIGN_OUT",true));
+   
 });
-
 
 app.listen(9000);

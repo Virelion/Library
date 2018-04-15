@@ -4,14 +4,21 @@ const config = require('./config');
 Mongoose.connect(config.database);
 
 var UserSchema = new Mongoose.Schema({
-    id: Mongoose.Schema.ObjectId,
-    name: { type: String, required: true },
+    _id: { type: String, required: true },
     hash: { type: String, required: true },
     admin: { type: Boolean, required: true}
 });
 
+UserSchema.virtual('name').get(function() {
+    return this._id;
+});
+
+UserSchema.virtual('name').set(function(name) {
+    this._id = name;
+});
+
 var TeamSchema = new Mongoose.Schema({
-    id: Mongoose.Schema.ObjectId,
+    _id: Mongoose.Schema.ObjectId,
     name: { type: String, required: true },
     members: [
         {type : Mongoose.Schema.ObjectId, ref : 'users'}
@@ -19,7 +26,7 @@ var TeamSchema = new Mongoose.Schema({
 });
 
 var RetrospectiveSchema = new Mongoose.Schema({
-    id: Mongoose.Schema.ObjectId,
+    _id: Mongoose.Schema.ObjectId,
     name: { type: String, required: true },
     date: { type: Date, required: true },
     team: {type : Mongoose.Schema.ObjectId, ref : 'teams'},
@@ -29,7 +36,7 @@ var RetrospectiveSchema = new Mongoose.Schema({
 });
 
 var IssueSchema = new Mongoose.Schema({
-    id: Mongoose.Schema.ObjectId,
+    _id: Mongoose.Schema.ObjectId,
     name: { type: String, required: true },
     description: { type: String, required: true },
     type: ['SAD','HAPPY','ANGRY','PROUD','CONFUSED']
