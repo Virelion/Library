@@ -1,6 +1,6 @@
 function message(msg,success){
     return {
-        message: msg,
+        content: msg,
         success: success
     };
 }

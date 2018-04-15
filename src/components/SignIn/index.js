@@ -30,7 +30,6 @@ export default class SignIn extends Component {
 
     signIn(event){        
         event.preventDefault();
-        console.log("submit");
         var body = {
                 name: this.state.user,
                 password: this.state.password
@@ -38,15 +37,15 @@ export default class SignIn extends Component {
         Helper.post('/sign-in',body)
         .then(res => res.json())
         .then(data =>{ 
-            if(data.success){
+            if(data.message.success){
                 Session.setSessionItem(Session.user,data);
-                this.setState({logged: true, message: false});
+                this.setState({message: false});
             } else {
-                this.setState({logged:false, message: data.message});
+                this.setState({message: data.message});
             }
         })
         .catch((err)=>{
-            this.setState({logged:false, message: "Server offline, cannot log in" });
+            this.setState({message:Helper.message("Server offline, cannot log in",false)});
         });
     }
 
@@ -58,7 +57,7 @@ export default class SignIn extends Component {
         return (
             <div className={this.constructor.name}  >
                 <form onSubmit={this.signIn.bind(this)}>
-                    <MessageBox message={this.state.message} type="MessageBox-negative" />
+                    <MessageBox message={this.state.message} />
                     <input type="text" name="user" placeholder="User name" value={this.state.user} onChange={this.handleEmailChange.bind(this)} />
                     <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange.bind(this)}/>
                     <input type="submit" value="Sign in" />

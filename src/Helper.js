@@ -27,6 +27,13 @@ Helper.post = (loc, body) => {
     });
 };
 
+Helper.message = (content,success) => {
+    return {
+        content: content,
+        success: success
+    };
+};
+
 Helper.postWithToken = (loc, body) => {
     body.token = Session.getSessionItem(Session.user).token;
     return Helper.post(loc,body);

@@ -9,8 +9,8 @@ export default class MessageBox extends Component {
     render() {
         if(this.props.message){
             return (
-                <div className={this.constructor.name+" MessageBox-"+this.props.success} >
-                    {this.props.message}
+                <div className={this.constructor.name+" MessageBox-"+this.props.message.success} >
+                    {this.props.message.content}
                 </div>
             );
         }

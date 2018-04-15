@@ -25,15 +25,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-function restrict(req, res, next) {
-  if (req.session.user) {
-    next();
-  } else {
-    req.session.error = 'Access denied!';
-    res.send(helper.message("DENIED",false));
-  }
-}
-
 app.get('/api/search/books/', (req,res)=>{
    res.send([
        {
@@ -57,7 +48,7 @@ app.get('/api/search/books/:phrase', (req,res)=>{
 app.post('/api/sign-in',(req,res)=>{
     db.User.findOne({_id: req.body.name},(err,user)=>{
         if(err) {
-            res.send({success: false, message: "Error while retrieving user"});
+            res.send({message:helper.message("Error while retrieving user",false)});
         }
         else if(user && bcrypt.compareSync(req.body.password,user.hash)){
             const payload = {
@@ -68,17 +59,16 @@ app.post('/api/sign-in',(req,res)=>{
             var token = userSession.sign(payload);
 
             res.send({
-                success: true,
+                message: helper.message("Logged in",true),
                 token: token,
                 user: payload
             });
         }
         else {
-            res.send({success: false, message: "Wrong user or password"});
+            res.send({message:helper.message("Wrong user or password",false)});
         }
     });
 });
-
 
 app.post('/api/changePassword',(req,res)=>{
     var userData = userSession.decode(req);
@@ -87,16 +77,12 @@ app.post('/api/changePassword',(req,res)=>{
         user.set({hash:bcrypt.hashSync(newPass, 10)});
         user.save((err)=>{
             if(err) {
-                res.send(helper.message("Cannot change password",false));
+                res.send({message:helper.message("Cannot change password",false)});
             } else {
-                res.send(helper.message("Password changed",true));
+                res.send({message:helper.message("Password changed",true)});
             }
         });
     });
-});
-
-app.post('/api/sign-out',(req,res)=>{
-   
 });
 
 app.listen(9000);
