@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Helper from './../../Helper';
 import Session from './../../Session';
-import LabeledInput from './../LabeledInput';
 import MessageBox from './../MessageBox';
 import { Redirect } from 'react-router'
 import './style.css';
@@ -36,7 +35,7 @@ export default class SignIn extends Component {
                 name: this.state.user,
                 password: this.state.password
             }; 
-        Helper.post(body)
+        Helper.post('/sign-in',body)
         .then(res => res.json())
         .then(data =>{ 
             if(data.success){
@@ -60,9 +59,9 @@ export default class SignIn extends Component {
             <div className={this.constructor.name}  >
                 <form onSubmit={this.signIn.bind(this)}>
                     <MessageBox message={this.state.message} type="MessageBox-negative" />
-                    <LabeledInput type="text" name="user" placeholder="User name" value={this.state.user} onChange={this.handleEmailChange.bind(this)} />
-                    <LabeledInput type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange.bind(this)}/>
-                    <LabeledInput type="submit" value="Sign in" />
+                    <input type="text" name="user" placeholder="User name" value={this.state.user} onChange={this.handleEmailChange.bind(this)} />
+                    <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange.bind(this)}/>
+                    <input type="submit" value="Sign in" />
                 </form>
             </div>
         );

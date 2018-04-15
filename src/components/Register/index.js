@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LabeledInput from './../LabeledInput';
 import './style.css';
 
 export default class Register extends Component {
@@ -10,9 +9,9 @@ export default class Register extends Component {
     render() {
         return (
             <div className={this.constructor.name} >
-                <LabeledInput label="E-mail:" type="email" name="email" required />
-                <LabeledInput label="Password:" type="password" name="password" required />
-                <LabeledInput label="Repeat password: " type="password" name="password-r" required />
+                <input label="E-mail:" type="email" name="email" required />
+                <input label="Password:" type="password" name="password" required />
+                <input label="Repeat password: " type="password" name="password-r" required />
             </div>
         );
     }

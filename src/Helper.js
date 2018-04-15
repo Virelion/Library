@@ -1,3 +1,4 @@
+import Session from './Session';
 const config = require('./config');
 var Helper = {};
 
@@ -16,14 +17,19 @@ Helper.getConfig = () => {
     return config;
 };
 
-Helper.post = (body) => {
-    return fetch(Helper.getConfig().api.location+'/sign-in', {
+Helper.post = (loc, body) => {
+    return fetch(Helper.getConfig().api.location+loc, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body)
     });
+};
+
+Helper.postWithToken = (loc, body) => {
+    body.token = Session.getSessionItem(Session.user).token;
+    return Helper.post(loc,body);
 };
 
 export default Helper;

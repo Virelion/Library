@@ -81,6 +81,11 @@ app.post('/api/sign-in',(req,res)=>{
     });
 });
 
+app.post('/api/changePassword',(req,res)=>{
+   console.log(req.body);
+   //jwt.verify
+});
+
 app.post('/api/sign-out',(req,res)=>{
    
 });
