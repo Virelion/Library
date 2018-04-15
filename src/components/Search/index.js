@@ -1,7 +1,5 @@
-// src/components/About/index.js
 import React, { Component } from 'react';
 import Helper from './../../Helper';
-import LoadingIco from '../LoadingIco';
 import './style.css';
 
 export default class Register extends Component {

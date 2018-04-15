@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './style.css';
-import Helper from './../../Helper';
 import CustomNavLink from './../CustomNavLink';
 import Session from './../../Session';
 
@@ -13,7 +12,7 @@ export default class AccountControll extends Component {
         this.refresh();
         Session.setOnSessionItemChange((tag,item)=>{
             console.log("AccountControll callback");
-            if(tag === "user"){
+            if(tag === Session.user){
                 console.log("AccountControll callback: set state");
                 this.refresh();
             }
@@ -21,15 +20,19 @@ export default class AccountControll extends Component {
     }
     
     refresh(){
-        this.setState({logged: Session.getSessionItem('user')});
+        this.setState({logged: Session.getSessionItem(Session.user)});
+    }
+    
+    signOut(){
+        Session.setSessionItem(Session.user,false);
     }
     
     render() {
-        Helper.title.set(this.constructor.name);
         if(this.state.logged){
             return (
               <div class={this.constructor.name} >
-                {this.state.logged.user.name}
+                <CustomNavLink to='/sign_in' onClick={this.signOut.bind(this)}>Sign Out</CustomNavLink>
+                <CustomNavLink to='/account'>{this.state.logged.user.name}</CustomNavLink>
               </div>
             );
         } else {

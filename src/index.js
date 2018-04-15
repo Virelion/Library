@@ -8,8 +8,6 @@ import AccountControll from './components/AccountControll' ;
 import CustomNavLink from './components/CustomNavLink' ;
 import Register from './components/Register' ;
 import SignIn from './components/SignIn' ;
-import Helper from './Helper';
-import Session from './Session';
 import './index.css';
 
 ReactDOM.render(

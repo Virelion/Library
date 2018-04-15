@@ -1,0 +1,12 @@
+.MessageBox {
+    width: 100%;
+    display: block;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.MessageBox-negative {
+    background: #ff5454;
+    
+}

@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import Helper from './../../Helper';
 import Session from './../../Session';
 import LabeledInput from './../LabeledInput';
-import MessageBox from './../MessageBox';
 import { Redirect } from 'react-router'
 import './style.css';
 
-export default class SignIn extends Component {
+export default class SignOut extends Component {
     static propTypes = {}
     static defaultProps = {}
     state = {}
@@ -16,7 +15,6 @@ export default class SignIn extends Component {
         this.state = {
           user: "",
           password: "",
-          message: false,
           logged: false
         }
     }
@@ -29,7 +27,7 @@ export default class SignIn extends Component {
         this.setState({password: e.target.value});
     }
 
-    signIn(event){        
+    signOut(event){        
         var body = {
                 name: this.state.user,
                 password: this.state.password
@@ -37,12 +35,8 @@ export default class SignIn extends Component {
         Helper.post(body)
         .then(res => res.json())
         .then(data =>{ 
-            if(data.success){
-                Session.setSessionItem(Session.user,data);
-                this.setState({logged: true, message: false});
-            } else {
-                this.setState({logged:false, message: data.message});
-            }
+            Session.setSessionItem("user",data);
+            this.setState({logged: true});
         });
     }
 
@@ -54,7 +48,6 @@ export default class SignIn extends Component {
         return (
             <form>
                 <div className={this.constructor.name} >
-                    <MessageBox message={this.state.message} type="MessageBox-negative" />
                     <LabeledInput type="text" name="user" placeholder="User name" value={this.state.user} onChange={this.handleEmailChange.bind(this)} />
                     <LabeledInput type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange.bind(this)}/>
                     <LabeledInput type="button"  onClick={this.signIn.bind(this)} value="Sign in" />

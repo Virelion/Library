@@ -1,5 +1,6 @@
-
 class Session {
+    user = 'user';
+    
     callbacks = [];
     getSessionItem(tag){
         return JSON.parse(sessionStorage.getItem(tag));
@@ -20,5 +21,6 @@ class Session {
         }
     }
 }
+
 const session = new Session();
 export default session;

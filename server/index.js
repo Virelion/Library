@@ -57,10 +57,9 @@ app.get('/api/search/books/:phrase', (req,res)=>{
 app.post('/api/sign-in',(req,res)=>{
     db.User.findOne({_id: req.body.name},(err,user)=>{
         if(err) {
-            res.send({success: false});
-            return;
+            res.send({success: false, message: "Error while retrieving user"});
         }
-        if(user && bcrypt.compareSync(req.body.password,user.hash)){
+        else if(user && bcrypt.compareSync(req.body.password,user.hash)){
             const payload = {
                 name: user.name,
                 admin: user.admin
@@ -75,6 +74,9 @@ app.post('/api/sign-in',(req,res)=>{
                 token: token,
                 user: payload
             });
+        }
+        else {
+            res.send({success: false, message: "Wrong user or password"});
         }
     });
 });
