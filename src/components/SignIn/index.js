@@ -43,6 +43,9 @@ export default class SignIn extends Component {
             } else {
                 this.setState({logged:false, message: data.message});
             }
+        })
+        .catch((err)=>{
+            this.setState({logged:false, message: "Server offline, cannot log in" });
         });
     }
 
