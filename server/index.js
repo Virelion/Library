@@ -85,6 +85,38 @@ app.post('/api/changePassword',(req,res)=>{
     });
 });
 
+
+//User
+app.post('/api/user/create',(req,res)=>{
+    userSession.asAdmin(req,res,(admin)=>{
+        var user = new db.User({
+            name: req.body.name,
+            hash: bcrypt.hashSync(req.body.password),
+            admin: req.body.admin,
+            team: req.body.team
+        });
+        user.save((err)=>{
+            if(err){
+                res.send({message:helper.message("Error while creating",false)});
+            } else {
+                res.send({message:helper.message("Created",true)});
+            }
+        });
+    });
+});
+
+app.post('/api/user/list',(req,res)=>{
+    userSession.asAdmin(req,res,(admin)=>{
+        db.User.find({},'name team admin',(err,users)=>{
+            if(err) res.send({message:helper.message("Error",false)});
+            res.send({
+                message:helper.message("List",true),
+                users: users
+            });
+        });
+    });
+});
+
 //Team
 app.post('/api/team/create',(req,res)=>{
     userSession.asAdmin(req,res,(admin)=>{
@@ -95,6 +127,18 @@ app.post('/api/team/create',(req,res)=>{
             } else {
                 res.send({message:helper.message("Team created",true)});
             }
+        });
+    });
+});
+
+app.post('/api/team/list',(req,res)=>{
+    userSession.asAdmin(req,res,(admin)=>{
+        db.Team.find({},(err,teams)=>{
+            if(err) res.send({message:helper.message("Error",false)});
+            res.send({
+                message:helper.message("Team list",true),
+                teams: teams
+            });
         });
     });
 });

@@ -6,7 +6,8 @@ Mongoose.connect(config.database);
 var UserSchema = new Mongoose.Schema({
     _id: { type: String, required: true },
     hash: { type: String, required: true },
-    admin: { type: Boolean, required: true}
+    admin: { type: Boolean, required: true},
+    team: { type: Mongoose.Schema.ObjectId, ref:'teams' }
 });
 
 UserSchema.virtual('name').get(function() {
@@ -21,7 +22,10 @@ var TeamSchema = new Mongoose.Schema({
     _id: Mongoose.Schema.ObjectId,
     name: { type: String, required: true },
     members: [
-        {type : Mongoose.Schema.ObjectId, ref : 'users'}
+        {type : Mongoose.Schema.ObjectId, ref: 'users'}
+    ],
+    retrospectives: [
+        {type : Mongoose.Schema.ObjectId, ref: 'retrospectives'}
     ]
 });
 
@@ -29,9 +33,9 @@ var RetrospectiveSchema = new Mongoose.Schema({
     _id: Mongoose.Schema.ObjectId,
     name: { type: String, required: true },
     date: { type: Date, required: true },
-    team: {type : Mongoose.Schema.ObjectId, ref : 'teams'},
+    team: {type : Mongoose.Schema.ObjectId, ref: 'teams'},
     issues: [
-        {type : Mongoose.Schema.ObjectId, ref : 'issues'}
+        {type : Mongoose.Schema.ObjectId, ref: 'issues'}
     ]
 });
 
@@ -39,7 +43,8 @@ var IssueSchema = new Mongoose.Schema({
     _id: Mongoose.Schema.ObjectId,
     name: { type: String, required: true },
     description: { type: String, required: true },
-    type: ['SAD','HAPPY','ANGRY','PROUD','CONFUSED']
+    type: ['SAD','HAPPY','ANGRY','PROUD','CONFUSED'],
+    retrospective: {type : Mongoose.Schema.ObjectId, ref: 'retrospectives'}
 });
 
 

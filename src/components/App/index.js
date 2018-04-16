@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Helper from './../../Helper';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Library from './../Library';
+import TeamManagement from './../TeamManagement';
+import UserManagement from './../UserManagement';
 import Home from './../Home';
 import NotFound from './../NotFound';
 import AccountControll from './../AccountControll' ;
@@ -44,13 +45,15 @@ export default class App extends Component {
                     <div>
                     <nav>
                         <CustomNavLink to='/'>Home</CustomNavLink>
-                        <CustomNavLink to='/library'>Library</CustomNavLink>
+                        <CustomNavLink to='/teams'>Teams</CustomNavLink>
+                        <CustomNavLink to='/users'>Users</CustomNavLink>
                         <AccountControll />
                     </nav>
                         <div className='app_root'>
                             <Switch>
                                 <Route path='/' exact component={Home} />
-                                <Route path='/library' component={Library} />
+                                <Route path='/teams' component={TeamManagement} />
+                                <Route path='/users' component={UserManagement} />
                                 <Route path='/register' component={Register} />
                                 <Route path='/account' component={ManageAccount} />
                                 <Route component={NotFound} />
