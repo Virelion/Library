@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom';
 import './style.css';
 import CustomNavLink from './../CustomNavLink';
 import MessageBox from './../MessageBox';
+import AddIco from './../AddIco';
 import Session from './../../Session';
 import Helper from './../../Helper';
 
@@ -47,6 +48,7 @@ export default class TeamManagement extends Component {
         }
         return (
         <div className={this.constructor.name} >
+            <AddIco href="#" />
             <MessageBox message={this.state.message} />
             <table>
                 <tbody>
