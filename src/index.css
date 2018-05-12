@@ -42,8 +42,10 @@ table {
     border-spacing: 0;
 }
 
+
+/* TABLE */
 table tr{ padding: 5px 5px;}
-td {
+td, th {
     line-height: 35px;
     padding: 0px 10px;
 }
@@ -56,6 +58,11 @@ td:first-child {
 td:last-child {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+th { 
+    border-bottom: grey solid 1px;
+    font-weight: bold;
 }
 
 html{

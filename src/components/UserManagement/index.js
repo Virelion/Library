@@ -9,6 +9,10 @@ export default class UserManagement extends Component {
     static defaultProps = {}
     state = {}
     
+    onConfirm(confirmedRow){
+        console.log(confirmedRow);
+    }
+    
     supplyFields(item,list){
         var choice = item.team ? item.team : 0;
         var fields = [
@@ -64,7 +68,7 @@ export default class UserManagement extends Component {
         var content;
         if(this.state.items && this.state.teams){
             content = (this.state.items.map(item => (
-                                <EditableRow key={item._id} fields={this.supplyFields(item,this.state.teams)} />
+                                <EditableRow key={item._id} onConfirm={this.onConfirm} fields={this.supplyFields(item,this.state.teams)} />
                             )));
         } else {
             content = (null);
@@ -74,7 +78,7 @@ export default class UserManagement extends Component {
             <MessageBox message={this.state.message} />
             <table>
                 <tbody>
-                <tr key="label"><th>Name</th><th>Admin</th><th>Team</th></tr>
+                {content?<tr key="label"><th>Name</th><th>Admin</th><th>Team</th><th></th></tr>:null}
                     {content}
                 </tbody>
             </table>

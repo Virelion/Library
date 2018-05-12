@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import AbstractField from './../AbstractField';
 import './style.css';
 
-export default class InputField extends Component {
+export default class InputField extends AbstractField {
     static propTypes = {}
     static defaultProps = {
         editable: false,

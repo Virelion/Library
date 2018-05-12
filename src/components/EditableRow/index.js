@@ -9,19 +9,26 @@ export default class EditableRow extends Component {
     static propTypes = {}
     static defaultProps = {}
     
-    createComponent(field){
+    createComponent(field,i){
         switch(field.type){
-            case 'select': return <Select className="rowItem" type={field.type} model={field.model} value={field.value} editable={field.editable && this.state.editMode} />;
-            case 'text': return <InputField className="rowItem" type={field.type} value={field.value} editable={field.editable && this.state.editMode} />; 
-            case 'checkbox': return <CheckBox type={field.type} value={field.value} editable={field.editable && this.state.editMode} />; 
+            case 'select': return <Select onRef={ref => this.registerRef(ref,i)} className="rowItem" fieldName={field.name} type={field.type} model={field.model} value={field.value} editable={field.editable && this.state.editMode} />;
+            case 'text': return <InputField onRef={ref => this.registerRef(ref,i)} className="rowItem" fieldName={field.name} type={field.type} value={field.value} editable={field.editable && this.state.editMode} />; 
+            case 'checkbox': return <CheckBox onRef={ref => this.registerRef(ref,i)} fieldName={field.name} type={field.type} value={field.value} editable={field.editable && this.state.editMode} />; 
             default: return undefined;
         }
     }
     
+    registerRef(ref,i){
+        this.setState((prevState)=>{
+            prevState.refs.push(ref);
+            return prevState;
+        });
+    }
+    
     createComponents(){
         this.state.fields = [];
-        this.props.fields.forEach((field)=>{
-            this.state.fields.push(this.createComponent(field));
+        this.props.fields.forEach((field,i)=>{
+            this.state.fields.push(this.createComponent(field,i));
         });
     }
     
@@ -31,23 +38,25 @@ export default class EditableRow extends Component {
     
     state = {
         editMode: false,
-        fields: []
+        fields: [],
+        refs: []
     }
 
     getCurrentObj() {
         var obj = {};
-        this.state.fields.forEach((field)=>{
-            obj[field.name] = field.value;
+        this.state.refs.forEach((ref)=>{
+            var fieldVal = ref.getCurrentField();
+            obj[fieldVal.name] = fieldVal.value;
         });
         return obj;
     }
 
     onChange(e) {
-        this.setState({ editMode: !this.state.editMode });
-        if(this.state.editMode === false){
-           // Helper.post('/sign-in',this.getCurrentObj())
-            //.then(res => res.json())
-        }
+        this.setState({ editMode: !this.state.editMode },()=>{
+            if(this.state.editMode === false){
+               this.props.onConfirm(this.getCurrentObj());
+            }
+        });
     }
 
     render() {

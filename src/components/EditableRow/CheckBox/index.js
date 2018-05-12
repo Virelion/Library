@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import AbstractField from './../AbstractField';
 import './style.css';
 
-export default class CheckBox extends Component {
+export default class CheckBox extends AbstractField {
     static propTypes = {}
     static defaultProps = {
     }
@@ -11,7 +12,7 @@ export default class CheckBox extends Component {
         this.state = {
             value: this.props.value,
             editable: this.props.editable
-        }
+        };
     }
     
     state = {
@@ -20,7 +21,6 @@ export default class CheckBox extends Component {
     }
 
     onValueChange(e) {
-        console.log(e.target);
         this.setState({value: e.target.checked});
     }
 

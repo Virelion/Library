@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import AbstractField from './../AbstractField';
 import './style.css';
 
-export default class Select extends Component {
+export default class Select extends AbstractField {
     static propTypes = {}
     static defaultProps = {
     }
