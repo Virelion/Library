@@ -11,28 +11,44 @@ export default class UserManagement extends Component {
     
     onConfirm(confirmedRow){
         console.log(confirmedRow);
-        
-        Helper.postWithToken("/user/edit",{data: confirmedRow})
+        var url = "";
+        if(confirmedRow.add){
+            url = "/user/create";
+        } else {
+            url = "/user/edit";
+        }   
+        Helper.postWithToken(url,{data: confirmedRow})
                 .then(res => res.json())
                 .then(data => {
-                    if(data.message.success){
-                        confirmedRow.setSuccess();
-                    } else {
-                        confirmedRow.setFailure();
-                        console.warn(data.message.content);
+                        if(data.message.success){
+                            confirmedRow.setSuccess();
+                        } else {
+                            confirmedRow.setFailure();
+                            console.warn(data.message.content);
+                        }
                     }
-                }
-            );
+                );
     }
     
     supplyFields(item,list){
         var choice = item.team ? item.team : "0";
         var fields = [
-            { type: 'text', name:'_id', value: item._id, editable:false},
+            { type: 'text', name:'_id', value: item._id, editable:false, placeholder: "Name"},
+            { type: 'password', name:'password', value: '', editable:true},
             { type: 'checkbox', name:'admin', value: item.admin, editable:true},
             { type: 'select', name:'team', value: item.team, editable:true, 
                 model: { list: list, choice: choice}}
         ]
+        return fields;
+    }
+    
+    freshItem(){
+        var fields = this.supplyFields({
+            _id: "",
+            admin: false,
+            team: "0"
+        },this.state.teams);
+        fields.forEach((field) => field.editable = true);
         return fields;
     }
     
@@ -89,7 +105,9 @@ export default class UserManagement extends Component {
             <MessageBox message={this.state.message} />
             <table>
                 <tbody>
-                {content?<tr key="label"><th>Name</th><th>Admin</th><th>Team</th><th></th></tr>:null}
+                
+                {content?<EditableRow addMode={true} onConfirm={this.onConfirm} fields={this.freshItem()} />:null}
+                {content?<tr key="label"><th>Name</th><th>Password</th><th>Admin</th><th>Team</th><th></th></tr>:null}
                     {content}
                 </tbody>
             </table>

@@ -38,7 +38,7 @@ var init = function init(app){
                         if(err){
                             res.send({message:helper.message(err,false)});
                         } else {
-                            res.send({message:helper.message("User changed",true)});
+                            res.send({message:helper.message("Team changed",true)});
                         }
                     });
                 } else {

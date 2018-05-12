@@ -24,9 +24,9 @@ export default class InputField extends AbstractField {
 
     render() {
         if(!this.props.editable){
-            return (<input className="input" type='text' value={this.state.value} disabled />);
+            return (<input className="input" placeholder={this.props.placeholder} type='text' value={this.state.value} disabled />);
         } else {
-            return (<input className="input" type='text' value={this.state.value} onChange={this.onValueChange.bind(this)} />);
+            return (<input className="input" placeholder={this.props.placeholder} type='text' value={this.state.value} onChange={this.onValueChange.bind(this)} />);
         }
     }
 };

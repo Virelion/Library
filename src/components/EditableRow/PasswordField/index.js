@@ -24,9 +24,13 @@ export default class PasswordField extends AbstractField {
 
     render() {
         if(!this.props.editable){
-            return (<input className="input" type='password' value={this.state.value} disabled />);
+            return (<input className="input" placeholder="Password" type='password' value={this.state.value} disabled />);
         } else {
-            return (<input className="input" type='password' value={this.state.value} onChange={this.onValueChange.bind(this)} />);
+            return (<div className="password">
+                        <input className="input" placeholder="Password" type='password' value={this.state.value} onChange={this.onValueChange.bind(this)} />
+                        <input className="input" placeholder="Repeat password" type='password' value={this.state.value} onChange={this.onValueChange.bind(this)} />
+                    </div>
+                        );
         }
     }
 };

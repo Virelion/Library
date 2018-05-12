@@ -6,15 +6,18 @@ const bcrypt = require("bcryptjs");
 var init = function init(app){
     app.post('/api/user/create',(req,res)=>{
         userSession.asAdmin(req,res,(admin)=>{
+            
+            var data = req.body.data;
+            console.log(data);
             var user = new db.User({
-                name: req.body.name,
-                hash: bcrypt.hashSync(req.body.password),
-                admin: req.body.admin,
-                team: req.body.team
+                name: data._id,
+                hash: bcrypt.hashSync(data.password),
+                admin: data.admin,
+                team: data.team
             });
             user.save((err)=>{
                 if(err){
-                    res.send({message:helper.message("Error while creating",false)});
+                    res.send({message:helper.message(err,false)});
                 } else {
                     res.send({message:helper.message("Created",true)});
                 }
@@ -25,11 +28,14 @@ var init = function init(app){
     app.post('/api/user/list',(req,res)=>{
         userSession.asAdmin(req,res,(admin)=>{
             db.User.find({},'name team admin',(err,users)=>{
-                if(err) res.send({message:helper.message("Error",false)});
-                res.send({
-                    message:helper.message("List",true),
-                    users: users
-                });
+                if(err) {
+                    res.send({message:helper.message(err,false)});
+                } else {
+                    res.send({
+                        message:helper.message("User list send",true),
+                        users: users
+                    });
+                }
             });
         });
     });

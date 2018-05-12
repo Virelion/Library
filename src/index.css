@@ -123,3 +123,7 @@ nav a:hover{
 td, tr, th {
     box-sizing: border-box;
 }
+
+.inline {
+    display: inline-block;
+}
