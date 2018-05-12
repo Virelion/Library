@@ -32,10 +32,7 @@ export default class ManageAccount extends Component {
     changePassword(e){
         e.preventDefault();
         if(     this.state.oldPassword
-                && this.state.password 
-                && this.state.passwordRepeat 
-                && this.state.password.length > 7 
-                && this.state.password === this.state.passwordRepeat){
+                && Helper.password.rule(this.state.password,this.state.passwordRepeat)){
             var payload = {
                 password: this.state.password,
                 oldPassword: this.state.oldPassword

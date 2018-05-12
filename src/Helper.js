@@ -27,6 +27,11 @@ Helper.post = (loc, body) => {
     });
 };
 
+Helper.password = {};
+Helper.password.rule = (password,repeat)=>{
+    return password && repeat && password.length > 7 && password === repeat;
+};
+
 Helper.message = (content,success) => {
     return {
         content: content,

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
 import MessageBox from './../MessageBox';
-import AddIco from './../AddIco';
 import EditableRow from './../EditableRow';
 
 import Helper from './../../Helper';
