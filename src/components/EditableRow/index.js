@@ -43,7 +43,10 @@ export default class EditableRow extends Component {
     }
 
     getCurrentObj() {
-        var obj = {};
+        var obj = { 
+            setSuccess: ()=>this.setSuccess(),
+            setFailure: ()=>this.setFailure()
+        };
         this.state.refs.forEach((ref)=>{
             var fieldVal = ref.getCurrentField();
             obj[fieldVal.name] = fieldVal.value;
@@ -58,10 +61,32 @@ export default class EditableRow extends Component {
             }
         });
     }
+    
+    setSuccess(){
+        this.setState({success:true, failure: false});
+    }
+    
+    setFailure(){
+        this.setState({success:false, failure: true});
+    }
+    
+    getUIclass(){
+        var classString = "record";
+        if(this.state.editMode){
+            classString+=" animation-toEditMode";
+        }
+        if(this.state.success){
+            classString+=" animation-green_flash";
+        }
+        else if(this.state.failure){
+            classString+=" animation-red_flash";
+        }
+        return classString;
+    }
 
     render() {
         this.createComponents();
-        return (<tr className={this.state.editMode ? "animation-toEditMode " : "record animation-green_flash"} key={this.props.key}>
+        return (<tr className={this.getUIclass()} key={this.props.key}>
         {this.state.fields.map((field,i)=>{
             return (<td key={i}>{field}</td>);
             })}

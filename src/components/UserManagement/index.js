@@ -11,12 +11,24 @@ export default class UserManagement extends Component {
     
     onConfirm(confirmedRow){
         console.log(confirmedRow);
+        
+        Helper.postWithToken("/user/edit",{data: confirmedRow})
+                .then(res => res.json())
+                .then(data => {
+                    if(data.message.success){
+                        confirmedRow.setSuccess();
+                    } else {
+                        confirmedRow.setFailure();
+                        console.warn(data.message.content);
+                    }
+                }
+            );
     }
     
     supplyFields(item,list){
         var choice = item.team ? item.team : 0;
         var fields = [
-            { type: 'text', name:'_id', value: item._id, editable:true},
+            { type: 'text', name:'_id', value: item._id, editable:false},
             { type: 'checkbox', name:'admin', value: item.admin, editable:true},
             { type: 'select', name:'team', value: item.team, editable:true, 
                 model: { list: list, choice: choice}}
@@ -55,7 +67,6 @@ export default class UserManagement extends Component {
                             teamList[0] = '';
                             data.teams.forEach((item)=>{ teamList[item._id] = item.name; });;
                             this.setState({teams: teamList})
-                            
                         } else {
                             this.setState({message: data.message})
                         }

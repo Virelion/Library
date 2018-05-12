@@ -33,6 +33,26 @@ var init = function init(app){
             });
         });
     });
+    
+    app.post('/api/user/edit',(req,res)=>{
+        userSession.asAdmin(req,res,(admin)=>{
+            db.User.findById(req.body.data._id,(err,user)=>{
+                user.admin = req.body.data.admin;
+                if(req.body.data.team==="0"){
+                    user.team = undefined;
+                } else {
+                    user.team = req.body.data.team;
+                }
+                user.save((err)=>{
+                    if(err){
+                        res.send({message:helper.message(err,false)});
+                    } else {
+                        res.send({message:helper.message("User changed",true)});
+                    }
+                });
+            });
+        });
+    });
 };
 
 module.exports = {

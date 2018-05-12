@@ -7,7 +7,7 @@ var UserSchema = new Mongoose.Schema({
     _id: { type: String, required: true },
     hash: { type: String, required: true },
     admin: { type: Boolean, required: true},
-    team: { type: Mongoose.Schema.ObjectId, ref:'teams' }
+    team: { type: Mongoose.Schema.ObjectId, ref:'teams',default : null }
 });
 
 UserSchema.virtual('name').get(function() {
