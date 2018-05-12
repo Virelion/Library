@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
 import './style.css';
-import CustomNavLink from './../CustomNavLink';
 import MessageBox from './../MessageBox';
-import Session from './../../Session';
+import EditableRow from './../EditableRow';
 import Helper from './../../Helper';
 
 export default class UserManagement extends Component {
@@ -11,11 +9,23 @@ export default class UserManagement extends Component {
     static defaultProps = {}
     state = {}
     
+    supplyFields(item,list){
+        var choice = item.team ? item.team : 0;
+        var fields = [
+            { type: 'text', name:'_id', value: item._id, editable:true},
+            { type: 'checkbox', name:'admin', value: item.admin, editable:true},
+            { type: 'select', name:'team', value: item.team, editable:true, 
+                model: { list: list, choice: choice}}
+        ]
+        return fields;
+    }
+    
     constructor(props){
         super(props);
         this.state = {
             message: false,
-            items: false
+            items: false,
+            teams: false
         }
     }
     
@@ -32,14 +42,29 @@ export default class UserManagement extends Component {
                     } else {
                         this.setState({message: data.message})
                     }
+                    
+                    Helper.postWithToken("/team/list",{})
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.message.success){
+                            var teamList = {};
+                            teamList[0] = '';
+                            data.teams.forEach((item)=>{ teamList[item._id] = item.name; });;
+                            this.setState({teams: teamList})
+                            
+                        } else {
+                            this.setState({message: data.message})
+                        }
+                    }).catch(()=>this.setState({message:Helper.message("Cannot connect",false)}));
+                    
                 }).catch(()=>this.setState({message:Helper.message("Cannot connect",false)}));
     }
     
     render() {
         var content;
-        if(this.state.items){
+        if(this.state.items && this.state.teams){
             content = (this.state.items.map(item => (
-                                <tr key={item._id} ><td>{item._id}</td><td>{item.admin? "y" : "n"}</td><td>{item.team}</td></tr>
+                                <EditableRow key={item._id} fields={this.supplyFields(item,this.state.teams)} />
                             )));
         } else {
             content = (null);

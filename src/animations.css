@@ -1,0 +1,41 @@
+@keyframes redFlash { 
+    0%   {background-color: rgba(0,0,0,0);}
+    50%  {background-color: #db3d3d;}
+    100% {background-color: rgba(0,0,0,0);}
+}
+
+@keyframes greenFlash {
+    0%   {background-color: rgba(0,0,0,0);}
+    50%  {background-color: #4cc13a;}
+    100% {background-color: rgba(0,0,0,0);}
+}
+
+@keyframes toEditMode {
+    0%   {background-color: rgba(0,0,0,0);}
+    100% {background-color: rgba(0,0,0,0.2);}
+}
+
+
+.animation-red_flash {
+    background-color: rgba(0,0,0,0);
+    -webkit-animation-name: redFlash; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.75s; /* Safari 4.0 - 8.0 */
+    animation-name: redFlash;
+    animation-duration: 0.75s;
+}
+
+.animation-green_flash {
+    background-color: rgba(0,0,0,0);
+    -webkit-animation-name: greenFlash; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.75s; /* Safari 4.0 - 8.0 */
+    animation-name: greenFlash;
+    animation-duration: 0.75s;
+}
+
+.animation-toEditMode {
+    background-color: rgba(0,0,0,0.2);
+    -webkit-animation-name: toEditMode; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.75s; /* Safari 4.0 - 8.0 */
+    animation-name: toEditMode;
+    animation-duration: 0.75s;
+}

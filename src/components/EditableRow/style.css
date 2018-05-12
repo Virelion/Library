@@ -1,0 +1,7 @@
+.rowButton {
+    min-width: 100px !important;
+}
+
+.editMode {
+    background: rgba(0,0,0,0.2);
+}

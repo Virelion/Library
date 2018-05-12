@@ -1,0 +1,6 @@
+.checkbox {
+    min-width: 50px;
+    border: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}

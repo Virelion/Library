@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Session from './../../Session';
 import MessageBox from './../MessageBox';
 import Helper from './../../Helper';
 import './style.css';

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
 import './style.css';
-import CustomNavLink from './../CustomNavLink';
 import MessageBox from './../MessageBox';
 import AddIco from './../AddIco';
-import Session from './../../Session';
 import EditableRow from './../EditableRow';
 
 import Helper from './../../Helper';
@@ -57,8 +54,6 @@ export default class TeamManagement extends Component {
             <table>
                 <tbody>
                     <tr key="label"><th>Name</th></tr>
-                    <EditableRow />
-                    <EditableRow />
                     {content}
                 </tbody>
             </table>
