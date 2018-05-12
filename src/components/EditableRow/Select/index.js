@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AbstractField from './../AbstractField';
 import './style.css';
 

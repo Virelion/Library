@@ -26,7 +26,7 @@ export default class UserManagement extends Component {
     }
     
     supplyFields(item,list){
-        var choice = item.team ? item.team : 0;
+        var choice = item.team ? item.team : "0";
         var fields = [
             { type: 'text', name:'_id', value: item._id, editable:false},
             { type: 'checkbox', name:'admin', value: item.admin, editable:true},
@@ -64,7 +64,7 @@ export default class UserManagement extends Component {
                     .then(data => {
                         if(data.message.success){
                             var teamList = {};
-                            teamList[0] = '';
+                            teamList["0"] = '';
                             data.teams.forEach((item)=>{ teamList[item._id] = item.name; });;
                             this.setState({teams: teamList})
                         } else {

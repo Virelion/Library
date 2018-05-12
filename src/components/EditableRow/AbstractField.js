@@ -7,5 +7,6 @@ export default class AbstractField extends Component {
     
     componentDidMount(){
         this.props.onRef(this);
+        console.log("ref");
     }
 }

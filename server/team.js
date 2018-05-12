@@ -28,6 +28,25 @@ var init = function init(app){
             });
         });
     });
+    
+    app.post('/api/team/edit',(req,res)=>{
+        userSession.asAdmin(req,res,(admin)=>{
+            db.Team.findById(req.body.data._id,(err,team)=>{
+                if(team){
+                    team.name = req.body.data.name;
+                    team.save((err)=>{
+                        if(err){
+                            res.send({message:helper.message(err,false)});
+                        } else {
+                            res.send({message:helper.message("User changed",true)});
+                        }
+                    });
+                } else {
+                    res.send({message:helper.message("Team not found",false)});
+                }
+            });
+        });
+    });
 };
 
 module.exports = {

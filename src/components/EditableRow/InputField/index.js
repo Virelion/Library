@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AbstractField from './../AbstractField';
 import './style.css';
 
 export default class InputField extends AbstractField {
     static propTypes = {}
-    static defaultProps = {
-        editable: false,
-        type: 'text'
-    }
     
     constructor(props){
         super(props);
@@ -28,9 +24,9 @@ export default class InputField extends AbstractField {
 
     render() {
         if(!this.props.editable){
-            return (<input className="input" type={this.props.type} value={this.state.value} disabled />);
+            return (<input className="input" type='text' value={this.state.value} disabled />);
         } else {
-            return (<input className="input" type={this.props.type} value={this.state.value} onChange={this.onValueChange.bind(this)} />);
+            return (<input className="input" type='text' value={this.state.value} onChange={this.onValueChange.bind(this)} />);
         }
     }
 };

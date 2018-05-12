@@ -11,35 +11,36 @@ export default class EditableRow extends Component {
     
     createComponent(field,i){
         switch(field.type){
-            case 'select': return <Select onRef={ref => this.registerRef(ref,i)} className="rowItem" fieldName={field.name} type={field.type} model={field.model} value={field.value} editable={field.editable && this.state.editMode} />;
-            case 'text': return <InputField onRef={ref => this.registerRef(ref,i)} className="rowItem" fieldName={field.name} type={field.type} value={field.value} editable={field.editable && this.state.editMode} />; 
-            case 'checkbox': return <CheckBox onRef={ref => this.registerRef(ref,i)} fieldName={field.name} type={field.type} value={field.value} editable={field.editable && this.state.editMode} />; 
+            case 'select': return <Select onRef={ref => this.registerRef(ref,i)} className="rowItem" fieldName={field.name} model={field.model} value={field.value} editable={field.editable && this.state.editMode} />;
+            case 'text': return <InputField onRef={ref => this.registerRef(ref,i)} className="rowItem" fieldName={field.name} value={field.value} editable={field.editable && this.state.editMode} />; 
+            case 'checkbox': return <CheckBox onRef={ref => this.registerRef(ref,i)} fieldName={field.name} value={field.value} editable={field.editable && this.state.editMode} />; 
+            case 'hidden': this.myRefs.push({ getCurrentField: ()=>{ return {name: field.name, value: field.value} } }); return null; 
             default: return undefined;
         }
     }
     
     registerRef(ref,i){
-        this.setState((prevState)=>{
-            prevState.refs.push(ref);
-            return prevState;
-        });
+        this.myRefs.push(ref);
     }
     
     createComponents(){
-        this.state.fields = [];
+        var newFields = [];
         this.props.fields.forEach((field,i)=>{
-            this.state.fields.push(this.createComponent(field,i));
+            newFields.push(this.createComponent(field,i));
         });
+        this.fields= newFields;
     }
     
     constructor(props){
         super(props);
+        this.myRefs = [];
     }
     
     state = {
         editMode: false,
         fields: [],
-        refs: []
+        success: false,
+        failure: false
     }
 
     getCurrentObj() {
@@ -47,7 +48,7 @@ export default class EditableRow extends Component {
             setSuccess: ()=>this.setSuccess(),
             setFailure: ()=>this.setFailure()
         };
-        this.state.refs.forEach((ref)=>{
+        this.myRefs.forEach((ref)=>{
             var fieldVal = ref.getCurrentField();
             obj[fieldVal.name] = fieldVal.value;
         });
@@ -86,9 +87,11 @@ export default class EditableRow extends Component {
 
     render() {
         this.createComponents();
-        return (<tr className={this.getUIclass()} key={this.props.key}>
-        {this.state.fields.map((field,i)=>{
-            return (<td key={i}>{field}</td>);
+        return (<tr className={this.getUIclass()}>
+        {this.fields.map((field,i)=>{
+                if(field){
+                    return (<td key={i}>{field}</td>);
+                }
             })}
                 
                 <td><button className="rowButton input" onClick={this.onChange.bind(this)}>{this.state.editMode ? "Confirm": "Edit"}</button></td>        

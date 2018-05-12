@@ -11,6 +11,30 @@ export default class TeamManagement extends Component {
     static defaultProps = {}
     state = {}
     
+    onConfirm(confirmedRow){
+        console.log(confirmedRow);
+        
+        Helper.postWithToken("/team/edit",{data: confirmedRow})
+                .then(res => res.json())
+                .then(data => {
+                    if(data.message.success){
+                        confirmedRow.setSuccess();
+                    } else {
+                        confirmedRow.setFailure();
+                        console.warn(data.message.content);
+                    }
+                }
+            );
+    }
+    
+    supplyFields(item,list){
+        var fields = [
+            { type: 'hidden', name:'_id', value: item._id},
+            { type: 'text', name:'name', value: item.name, editable:true},
+        ]
+        return fields;
+    }
+    
     constructor(props){
         super(props);
         this.state = {
@@ -40,20 +64,18 @@ export default class TeamManagement extends Component {
         var content;
         if(this.state.items){
             content = (this.state.items.map(item => (
-                                <tr key={item._id} ><td>{item.name}</td></tr>
+                                <EditableRow key={item._id} onConfirm={this.onConfirm} fields={this.supplyFields(item,this.state.teams)} />
+                               
                             )));
         } else {
             content = (null);
         }
         return (
         <div className={this.constructor.name} >
-
-                
-            <AddIco href="#" />
             <MessageBox message={this.state.message} />
             <table>
                 <tbody>
-                    <tr key="label"><th>Name</th></tr>
+                {content?<tr key="label"><th>Name</th><th></th></tr> :null}
                     {content}
                 </tbody>
             </table>
