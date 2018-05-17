@@ -11,10 +11,22 @@ export default class App extends Component {
         Helper.title.reset();
         return (
             <div className={this.constructor.name} >
-                <h1>Simple library</h1>
-                <p>
-                    Find your reading experience enhanced with moder library technology. Find your book and borrow it without even geting out from home. Do not worry we will hadle everything.
-                </p>
+                <img id="article-logo" src="logo.png" />
+                
+                <h1>ScrumBox</h1>
+                <div className="right-side">
+                    <p>
+                        React app which is helping in preparing retrospectives.
+                    </p>
+                    <p>
+                        Here you can:
+                        <ul>
+                            <li>create space for your team</li>
+                            <li>prepare retrospective</li>
+                            <li>vote for issues</li>
+                        </ul>
+                    </p>
+                </div>
             </div>
         );
     }

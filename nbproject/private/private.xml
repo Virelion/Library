@@ -4,21 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/index.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/UserManagement/style.css</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/index.css</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/TeamManagement/style.css</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/Helper.js</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/PasswordField/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/Register/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/PasswordField/style.css</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/AbstractField.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/server/user.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/server/team.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/index.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/server/db.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/CheckBox/index.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/CheckBox/style.css</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/TeamManagement/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/ManageAccount/index.js</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/InputField/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/TeamManagement/index.js</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/UserManagement/index.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/Select/index.js</file>
         </group>
     </open-files>
 </project-private>
