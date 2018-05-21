@@ -8,7 +8,6 @@ export default class UserManagement extends Component {
     static propTypes = {}
     static defaultProps = {}
     state = {}
-    
     onConfirm(confirmedRow){
         console.log(confirmedRow);
         var url = "";
@@ -89,7 +88,7 @@ export default class UserManagement extends Component {
                     }).catch(()=>this.setState({message:Helper.message("Cannot connect",false)}));
                     
                 }).catch(()=>this.setState({message:Helper.message("Cannot connect",false)}));
-    }
+            }
     
     render() {
         var content;

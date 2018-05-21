@@ -73,7 +73,7 @@ export default class EditableRow extends Component {
             return { editMode: !prevState.editMode, prevState: this.getCurrentObj()};
         },()=>{
             if(this.state.editMode === false){
-               this.props.onConfirm(this.getCurrentObj());
+                this.props.onConfirm(this.getCurrentObj());
             } else {
                this.setState({prev:this.getCurrentObj()});
             }

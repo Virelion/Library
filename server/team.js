@@ -6,7 +6,7 @@ var init = function init(app){
     //Team
     app.post('/api/team/create',(req,res)=>{
         userSession.asAdmin(req,res,(admin)=>{
-            var team = new db.Team({name: req.body.name});
+            var team = new db.Team({_id: db.newID(), name: req.body.data.name});
             team.save((err)=>{
                 if(err){
                     res.send({message:helper.message("Error while creating team",false)});

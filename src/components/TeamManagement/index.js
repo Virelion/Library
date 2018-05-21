@@ -12,8 +12,13 @@ export default class TeamManagement extends Component {
     
     onConfirm(confirmedRow){
         console.log(confirmedRow);
-        
-        Helper.postWithToken("/team/edit",{data: confirmedRow})
+        var url = "";
+        if(confirmedRow.add){
+            url = "/team/create";
+        } else {
+            url = "/team/edit";
+        }  
+        Helper.postWithToken(url,{data: confirmedRow})
                 .then(res => res.json())
                 .then(data => {
                     if(data.message.success){
@@ -24,6 +29,14 @@ export default class TeamManagement extends Component {
                     }
                 }
             );
+    }
+    
+    freshItem(){
+        var fields = this.supplyFields({
+            name: ""
+        },this.state.teams);
+        fields.forEach((field) => field.editable = true);
+        return fields;
     }
     
     supplyFields(item,list){
@@ -74,6 +87,7 @@ export default class TeamManagement extends Component {
             <MessageBox message={this.state.message} />
             <table>
                 <tbody>
+                {content?<EditableRow addMode={true} onConfirm={this.onConfirm} fields={this.freshItem()} />:null}
                 {content?<tr key="label"><th>Name</th><th></th></tr> :null}
                     {content}
                 </tbody>

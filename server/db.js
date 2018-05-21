@@ -47,6 +47,9 @@ var IssueSchema = new Mongoose.Schema({
     retrospective: {type : Mongoose.Schema.ObjectId, ref: 'retrospectives'}
 });
 
+var newID = ()=>{
+    return Mongoose.Types.ObjectId();
+};
 
 var User = Mongoose.model('users', UserSchema);
 var Team = Mongoose.model('teams', TeamSchema);
@@ -57,5 +60,6 @@ module.exports ={
     User: User,
     Team: Team,
     Retrospective: Retrospective,
-    Issue: Issue
+    Issue: Issue,
+    newID: newID
 };
