@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import './style.css';
 import MessageBox from './../MessageBox';
@@ -8,6 +9,7 @@ export default class UserManagement extends Component {
     static propTypes = {}
     static defaultProps = {}
     state = {}
+    
     onConfirm(confirmedRow){
         console.log(confirmedRow);
         var url = "";
@@ -23,6 +25,19 @@ export default class UserManagement extends Component {
                             confirmedRow.setSuccess();
                         } else {
                             confirmedRow.setFailure();
+                            console.warn(data.message.content);
+                        }
+                    }
+                );
+    }
+    
+    delete(id){
+        console.log("delete "+id);
+        Helper.postWithToken("/user/delete",{data: { _id: id} })
+                .then(res => res.json())
+                .then(data => {
+                        if(data.message.success){
+                        } else {
                             console.warn(data.message.content);
                         }
                     }
@@ -94,7 +109,7 @@ export default class UserManagement extends Component {
         var content;
         if(this.state.items && this.state.teams){
             content = (this.state.items.map(item => (
-                                <EditableRow key={item._id} onConfirm={this.onConfirm} fields={this.supplyFields(item,this.state.teams)} />
+                                <EditableRow key={item._id} onDelete={()=>this.delete(item._id)}  onConfirm={(row)=>this.onConfirm(row)} fields={this.supplyFields(item,this.state.teams)} />
                             )));
         } else {
             content = (null);

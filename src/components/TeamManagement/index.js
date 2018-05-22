@@ -10,6 +10,19 @@ export default class TeamManagement extends Component {
     static defaultProps = {}
     state = {}
     
+    delete(id){
+        console.log("delete "+id);
+        Helper.postWithToken("/team/delete",{data: { _id: id} })
+                .then(res => res.json())
+                .then(data => {
+                        if(data.message.success){
+                        } else {
+                            console.warn(data.message.content);
+                        }
+                    }
+                );
+    }
+    
     onConfirm(confirmedRow){
         console.log(confirmedRow);
         var url = "";
@@ -76,7 +89,7 @@ export default class TeamManagement extends Component {
         var content;
         if(this.state.items){
             content = (this.state.items.map(item => (
-                                <EditableRow key={item._id} onConfirm={this.onConfirm} fields={this.supplyFields(item,this.state.teams)} />
+                                <EditableRow key={item._id} onDelete={()=>this.delete(item._id)} onConfirm={this.onConfirm} fields={this.supplyFields(item,this.state.teams)} />
                                
                             )));
         } else {

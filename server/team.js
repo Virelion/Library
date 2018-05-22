@@ -16,6 +16,19 @@ var init = function init(app){
             });
         });
     });
+    
+    app.post('/api/team/delete',(req,res)=>{
+        userSession.asAdmin(req,res,(admin)=>{
+            var data = req.body.data;
+            db.Team.findById(data._id).remove( (err)=>{
+                if(err){
+                    res.send({message:helper.message(err,false)});
+                } else {
+                    res.send({message:helper.message("Removed team",true)});
+                }
+            });
+        });
+    });
 
     app.post('/api/team/list',(req,res)=>{
         userSession.asAdmin(req,res,(admin)=>{

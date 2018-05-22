@@ -5,10 +5,17 @@
         <group>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/Home/index.js</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/index.css</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/server/user.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/server/team.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/server/db.js</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/Helper.js</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/PasswordField/style.css</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/ManageAccount/index.js</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/TeamManagement/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/InputField/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/server/deploy.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/UserManagement/index.js</file>
         </group>
     </open-files>
 </project-private>

@@ -96,6 +96,10 @@ export default class EditableRow extends Component {
         });
     }
     
+    delete(){
+        this.props.onDelete(this.getCurrentObj()._id);
+    }
+    
     setSuccess(){
         this.setState({success:true, failure: false});
     }
@@ -135,8 +139,11 @@ export default class EditableRow extends Component {
 
                   <td><button className="rowButton input" onClick={this.onChange.bind(this)} >{this.state.editMode ? "Confirm": "Edit"}</button>
                   {this.state.editMode?<br />:null}
-                  {this.state.editMode?<button  className="rowButton input" onClick={this.cancel.bind(this)} >Cancel</button>:null}</td>        
-
+                  {this.state.editMode?<button  className="rowButton input" onClick={this.cancel.bind(this)} >Cancel</button>:null}  
+                  </td>
+                  <td>
+                  {this.props.onDelete?<button className="rowButton input" onClick={this.delete.bind(this)} >Delete</button>:null}
+                  </td>
                   </tr>
 
               );  

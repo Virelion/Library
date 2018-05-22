@@ -25,6 +25,19 @@ var init = function init(app){
         });
     });
 
+    app.post('/api/user/delete',(req,res)=>{
+        userSession.asAdmin(req,res,(admin)=>{
+            var data = req.body.data;
+            db.User.findById(data._id).remove( (err)=>{
+                if(err){
+                    res.send({message:helper.message(err,false)});
+                } else {
+                    res.send({message:helper.message("Removed user",true)});
+                }
+            });
+        });
+    });
+
     app.post('/api/user/list',(req,res)=>{
         userSession.asAdmin(req,res,(admin)=>{
             db.User.find({},'name team admin',(err,users)=>{
