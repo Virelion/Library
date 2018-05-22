@@ -1,41 +1,25 @@
 import React, { Component } from 'react';
 import './style.css';
-import MessageBox from './../MessageBox';
-import EditableRow from './../EditableRow';
+import MessageBox from './../../MessageBox';
+import EditableRow from './../../EditableRow';
+import Management from './../Management';
+import Helper from './../../../Helper';
 
-import Helper from './../../Helper';
-
-export default class TeamManagement extends Component {
+export default class TeamManagement extends Management {
     static propTypes = {}
     static defaultProps = {}
     state = {}
     
-    delete(id){
-        console.log("delete "+id);
-        Helper.postWithToken("/team/delete",{data: { _id: id} })
-                .then(res => res.json())
-                .then(data => {
-                        this.setState({message:data.message});
-                        this.refresh();
-                    }
-                );
+    editItem(data){
+        this.send("/team/edit",data);
     }
     
-    onConfirm(confirmedRow){
-        console.log(confirmedRow);
-        var url = "";
-        if(confirmedRow.add){
-            url = "/team/create";
-        } else {
-            url = "/team/edit";
-        }  
-        Helper.postWithToken(url,{data: confirmedRow})
-                .then(res => res.json())
-                .then(data => {
-                        this.setState({message:data.message});
-                        this.refresh();
-                }
-            );
+    addItem(data){
+        this.send("/team/create",data);
+    }
+    
+    deleteItem(data){
+        this.send("/team/delete",data);
     }
     
     freshItem(){
@@ -63,10 +47,6 @@ export default class TeamManagement extends Component {
         }
     }
     
-    componentDidMount(){
-        this.refresh();
-    }
-    
     refresh(){
         Helper.postWithToken("/team/list",{})
                 .then(res => res.json())
@@ -83,7 +63,7 @@ export default class TeamManagement extends Component {
         var content;
         if(this.state.items){
             content = (this.state.items.map(item => (
-                                <EditableRow key={item._id} onDelete={()=>this.delete(item._id)} onConfirm={this.onConfirm} fields={this.supplyFields(item,this.state.teams)} />
+                                <EditableRow key={item._id} onDelete={()=>this.deleteItem(item)} onConfirm={(item)=>this.editItem(item)} fields={this.supplyFields(item,this.state.teams)} />
                                
                             )));
         } else {
@@ -94,7 +74,7 @@ export default class TeamManagement extends Component {
             <MessageBox message={this.state.message} />
             <table>
                 <tbody>
-                {content?<EditableRow addMode={true} onConfirm={(row)=>this.onConfirm(row)} fields={this.freshItem()} />:null}
+                {content?<EditableRow addMode={true} onConfirm={(row)=>this.addItem(row)} fields={this.freshItem()} />:null}
                 {content?<tr key="label"><th>Name</th><th></th></tr> :null}
                     {content}
                 </tbody>

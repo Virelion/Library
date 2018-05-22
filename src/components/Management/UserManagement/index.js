@@ -1,41 +1,25 @@
-
 import React, { Component } from 'react';
 import './style.css';
-import MessageBox from './../MessageBox';
-import EditableRow from './../EditableRow';
-import Helper from './../../Helper';
+import MessageBox from './../../MessageBox';
+import EditableRow from './../../EditableRow';
+import Helper from './../../../Helper';
+import Management from './../Management';
 
-export default class UserManagement extends Component {
+export default class UserManagement extends Management {
     static propTypes = {}
     static defaultProps = {}
     state = {}
     
-    onConfirm(confirmedRow){
-        console.log(confirmedRow);
-        var url = "";
-        if(confirmedRow.add){
-            url = "/user/create";
-        } else {
-            url = "/user/edit";
-        }   
-        Helper.postWithToken(url,{data: confirmedRow})
-                .then(res => res.json())
-                .then(data => {
-                        this.setState({message:data.message});
-                        this.refresh();
-                    }
-                );
+    editItem(data){
+        this.send("/user/edit",data);
     }
     
-    delete(id){
-        console.log("delete "+id);
-        Helper.postWithToken("/user/delete",{data: { _id: id} })
-                .then(res => res.json())
-                .then(data => {
-                        this.setState({message:data.message});
-                        this.refresh();
-                    }
-                );
+    addItem(data){
+        this.send("/user/create",data);
+    }
+    
+    deleteItem(data){
+        this.send("/user/delete",data);
     }
     
     supplyFields(item,list){
@@ -69,10 +53,6 @@ export default class UserManagement extends Component {
         }
     }
     
-    componentDidMount(){
-        this.refresh();
-    }
-    
     refresh(){
         Helper.postWithToken("/user/list",{})
                 .then(res => res.json())
@@ -97,13 +77,13 @@ export default class UserManagement extends Component {
                     }).catch(()=>this.setState({message:Helper.message("Cannot connect",false)}));
                     
                 }).catch(()=>this.setState({message:Helper.message("Cannot connect",false)}));
-            }
+    }
     
     render() {
         var content;
         if(this.state.items && this.state.teams){
             content = (this.state.items.map(item => (
-                                <EditableRow key={item._id} onDelete={()=>this.delete(item._id)}  onConfirm={(row)=>this.onConfirm(row)} fields={this.supplyFields(item,this.state.teams)} />
+                                <EditableRow key={item._id} onDelete={()=>this.deleteItem(item)}  onConfirm={(row)=>this.editItem(row)} fields={this.supplyFields(item,this.state.teams)} />
                             )));
         } else {
             content = (null);
@@ -114,7 +94,7 @@ export default class UserManagement extends Component {
             <table>
                 <tbody>
                 
-                {content?<EditableRow addMode={true} onConfirm={(row)=>this.onConfirm(row)} fields={this.freshItem()} />:null}
+                {content?<EditableRow addMode={true} onConfirm={(row)=>this.addItem(row)} fields={this.freshItem()} />:null}
                 {content?<tr key="label"><th>Name</th><th>Password</th><th>Admin</th><th>Team</th><th></th><th></th></tr>:null}
                     {content}
                 </tbody>

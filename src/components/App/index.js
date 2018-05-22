@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Helper from './../../Helper';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import TeamManagement from './../TeamManagement';
-import UserManagement from './../UserManagement';
+import TeamManagement from './../Management/TeamManagement';
+import UserManagement from './../Management/UserManagement';
 import Home from './../Home';
 import NotFound from './../NotFound';
 import AccountControll from './../AccountControll' ;
