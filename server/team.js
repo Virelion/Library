@@ -22,7 +22,7 @@ var init = function init(app){
             var data = req.body.data;
             db.Team.findById(data._id).remove( (err)=>{
                 if(err){
-                    res.send({message:helper.message(err,false)});
+                    res.send({message:helper.message("Failed to delete team",false)});
                 } else {
                     res.send({message:helper.message("Removed team",true)});
                 }
@@ -33,7 +33,7 @@ var init = function init(app){
     app.post('/api/team/list',(req,res)=>{
         userSession.asAdmin(req,res,(admin)=>{
             db.Team.find({},(err,teams)=>{
-                if(err) res.send({message:helper.message("Error",false)});
+                if(err) res.send({message:helper.message("Failed to list teams",false)});
                 res.send({
                     message:helper.message("Team list",true),
                     teams: teams
@@ -49,7 +49,7 @@ var init = function init(app){
                     team.name = req.body.data.name;
                     team.save((err)=>{
                         if(err){
-                            res.send({message:helper.message(err,false)});
+                            res.send({message:helper.message("Failed to change team",false)});
                         } else {
                             res.send({message:helper.message("Team changed",true)});
                         }

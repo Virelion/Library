@@ -17,9 +17,9 @@ var init = function init(app){
             });
             user.save((err)=>{
                 if(err){
-                    res.send({message:helper.message(err,false)});
+                    res.send({message:helper.message("Failed to create user",false)});
                 } else {
-                    res.send({message:helper.message("Created",true)});
+                    res.send({message:helper.message("Created user",true)});
                 }
             });
         });
@@ -30,7 +30,7 @@ var init = function init(app){
             var data = req.body.data;
             db.User.findById(data._id).remove( (err)=>{
                 if(err){
-                    res.send({message:helper.message(err,false)});
+                    res.send({message:helper.message("Failed to remove user",false)});
                 } else {
                     res.send({message:helper.message("Removed user",true)});
                 }
@@ -42,7 +42,7 @@ var init = function init(app){
         userSession.asAdmin(req,res,(admin)=>{
             db.User.find({},'name team admin',(err,users)=>{
                 if(err) {
-                    res.send({message:helper.message(err,false)});
+                    res.send({message:helper.message("Failed to send user list",false)});
                 } else {
                     res.send({
                         message:helper.message("User list send",true),
@@ -65,7 +65,7 @@ var init = function init(app){
                     }
                     user.save((err)=>{
                         if(err){
-                            res.send({message:helper.message(err,false)});
+                            res.send({message:helper.message("Failed to edit user",false)});
                         } else {
                             res.send({message:helper.message("User changed",true)});
                         }

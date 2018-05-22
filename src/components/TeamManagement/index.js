@@ -15,10 +15,8 @@ export default class TeamManagement extends Component {
         Helper.postWithToken("/team/delete",{data: { _id: id} })
                 .then(res => res.json())
                 .then(data => {
-                        if(data.message.success){
-                        } else {
-                            console.warn(data.message.content);
-                        }
+                        this.setState({message:data.message});
+                        this.refresh();
                     }
                 );
     }
@@ -34,12 +32,8 @@ export default class TeamManagement extends Component {
         Helper.postWithToken(url,{data: confirmedRow})
                 .then(res => res.json())
                 .then(data => {
-                    if(data.message.success){
-                        confirmedRow.setSuccess();
-                    } else {
-                        confirmedRow.setFailure();
-                        console.warn(data.message.content);
-                    }
+                        this.setState({message:data.message});
+                        this.refresh();
                 }
             );
     }
@@ -100,7 +94,7 @@ export default class TeamManagement extends Component {
             <MessageBox message={this.state.message} />
             <table>
                 <tbody>
-                {content?<EditableRow addMode={true} onConfirm={this.onConfirm} fields={this.freshItem()} />:null}
+                {content?<EditableRow addMode={true} onConfirm={(row)=>this.onConfirm(row)} fields={this.freshItem()} />:null}
                 {content?<tr key="label"><th>Name</th><th></th></tr> :null}
                     {content}
                 </tbody>
