@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import trigger from './../Flash/flashtrigger';
 import Helper from './../../Helper';
 
 export default class Management extends Component{
@@ -6,8 +7,13 @@ export default class Management extends Component{
         Helper.postWithToken(url,{data: data})
             .then(res => res.json())
             .then(data => {
-                    this.setState({message:data.message});
-                    this.refresh();
+                    if(data.message.success){
+                        this.refresh();
+                        trigger.trigger();
+                    } else {
+                        this.setState({message:data.message});
+                        this.refresh();
+                    }
                 }
             );
     }

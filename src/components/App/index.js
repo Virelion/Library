@@ -8,6 +8,7 @@ import NotFound from './../NotFound';
 import AccountControll from './../AccountControll' ;
 import CustomNavLink from './../CustomNavLink' ;
 import Register from './../Register' ;
+import Flash from './../Flash' ;
 import SignIn from './../SignIn' ;
 import ManageAccount from './../ManageAccount' ;
 import Session from './../../Session';
@@ -49,6 +50,7 @@ export default class App extends Component {
                         <CustomNavLink to='/users'>Users</CustomNavLink>
                         <AccountControll />
                     </nav>
+                        <Flash />
                         <div className='app_root'>
                             <Switch>
                                 <Route path='/' exact component={Home} />

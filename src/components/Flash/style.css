@@ -1,0 +1,31 @@
+@keyframes flash {
+    0% {background: #00000000; }
+    50% {background: #00ff00ff; }
+    100% {background: #00000000; }
+}
+
+@keyframes flash2 {
+    0% {background: #00000000; }
+    50% {background: #00ff00ff; }
+    100% {background: #00000000; }
+}
+
+.Flash {
+    width: 100%;
+    display: block;
+    clear: both;
+    height: 10px;
+    background: #00000000;
+}
+
+.Flash-animated0 {
+    animation-name: flash;
+    animation-duration: 0.5s;
+    background: #00000000;
+}
+
+ .Flash-animated1 {
+    animation-name: flash2;
+    animation-duration: 0.5s;
+    background: #00000000;
+}
