@@ -11,7 +11,7 @@ export default class App extends Component {
         Helper.title.reset();
         return (
             <div className={this.constructor.name} >
-                <img id="article-logo" src="logo.png" />
+                <img alt="logo" id="article-logo" src="logo.png" />
                 
                 <h1>ScrumBox</h1>
                 <div className="right-side">

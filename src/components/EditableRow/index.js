@@ -3,7 +3,6 @@ import InputField from './InputField';
 import Select from './Select';
 import PasswordField from './PasswordField';
 import CheckBox from './CheckBox';
-import Helper from './../../Helper';
 import './style.css';
 
 export default class EditableRow extends Component {
@@ -107,35 +106,26 @@ export default class EditableRow extends Component {
     setFailure(){
         this.setState({success:false, failure: true});
     }
-    
-    getUIclass(){
-        var classString = "record";
-        if(this.state.editMode){
-            classString+=" animation-toEditMode";
-        }
-        if(this.state.success){
-            classString+=" animation-green_flash";
-            this.state.success = false;
-        }
-        else if(this.state.failure){
-            classString+=" animation-red_flash";
-            this.state.failure = false;
-        }
-        return classString;
-    }
 
     render() {
         this.createComponents();
         if(this.props.addMode && !this.state.editMode){
-            return (<tr className={this.getUIclass()} ><td><button  className="rowButton input" onClick={this.onChange.bind(this)} >Add</button>
+            return (<tr><td><button  className="rowButton input" onClick={this.onChange.bind(this)} >Add</button>
             </td></tr>);
         } else {
-            return (<tr className={this.getUIclass()}>
-                    {this.fields.map((field,i)=>{
-                        if(field){
-                            return (<td key={i}>{field}</td>);
-                        }
-                    })}
+            return (
+                    <tr>
+                    {
+                        this.fields.map(
+                            (field,i)=>{
+                                if(field){
+                                    return (<td key={i}>{field}</td>);
+                                } else {
+                                    return (null);
+                                }
+                            }
+                        )
+                    }
 
                   <td><button className="rowButton input" onClick={this.onChange.bind(this)} >{this.state.editMode ? "Confirm": "Edit"}</button>
                   {this.state.editMode?<br />:null}
@@ -145,7 +135,6 @@ export default class EditableRow extends Component {
                   {this.props.onDelete?<button className="rowButton input" onClick={this.delete.bind(this)} >Delete</button>:null}
                   </td>
                   </tr>
-
               );  
         }
         

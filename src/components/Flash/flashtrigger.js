@@ -12,11 +12,8 @@ class Trigger{
     
     trigger(){
         if(this.flash){
-            console.log("tr",this.flash);
             this.flash.animate();
-        } else {
-            console.log("no flash");
-        }
+        } 
     }   
 }
 

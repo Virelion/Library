@@ -9,12 +9,7 @@ export default class Flash extends Component {
         fire: 0
     }
     
-    constructor(props){
-        super(props);
-    }
-    
     animate(){
-        console.log("Changeing state");
         this.setState(prevState => {
             return {fire: (prevState.fire+1)%2 }
          })
@@ -25,7 +20,6 @@ export default class Flash extends Component {
     }
 
     render() {
-        console.log(this.state.fire);
         if(this.state.fire !== 0){
             return (
                     <div className="Flash Flash-animated1" />

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import trigger from './../Flash/flashtrigger';
 import Helper from './../../Helper';
 
@@ -17,10 +17,6 @@ export default class Management extends Component{
                 }
             );
     }
-    
-    constructor(props){
-        super(props);
-    }   
     
     componentDidMount(){
         this.refresh();

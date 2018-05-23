@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './style.css';
 import MessageBox from './../../MessageBox';
 import EditableRow from './../../EditableRow';
