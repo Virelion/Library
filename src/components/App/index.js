@@ -3,6 +3,7 @@ import Helper from './../../Helper';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import TeamManagement from './../Management/TeamManagement';
 import UserManagement from './../Management/UserManagement';
+import Retrospectives from './../Management/Retrospectives' ;
 import Home from './../Home';
 import NotFound from './../NotFound';
 import AccountControll from './../AccountControll' ;
@@ -22,9 +23,7 @@ export default class App extends Component {
     componentDidMount(){
         this.refresh();
         Session.setOnSessionItemChange((tag,item)=>{
-            console.log("AccountControll callback");
             if(tag === Session.user){
-                console.log("AccountControll callback: set state");
                 this.refresh();
             }
         })
@@ -35,6 +34,7 @@ export default class App extends Component {
     }
 
     render() {
+        var isAdmin = Session.isAdmin();
         Helper.title.reset();
         if(!this.state.logged){
             return (
@@ -46,8 +46,9 @@ export default class App extends Component {
                     <div>
                     <nav>
                         <CustomNavLink to='/'>Home</CustomNavLink>
-                        <CustomNavLink to='/teams'>Teams</CustomNavLink>
-                        <CustomNavLink to='/users'>Users</CustomNavLink>
+                        {isAdmin?<CustomNavLink to='/teams'>Teams</CustomNavLink>:null}
+                        {isAdmin?<CustomNavLink to='/users'>Users</CustomNavLink>:null}
+                        <CustomNavLink to='/retrospectives'>Retrospectives</CustomNavLink>
                         <AccountControll />
                     </nav>
                         <Flash />
@@ -56,6 +57,7 @@ export default class App extends Component {
                                 <Route path='/' exact component={Home} />
                                 <Route path='/teams' component={TeamManagement} />
                                 <Route path='/users' component={UserManagement} />
+                                <Route path='/retrospectives' component={Retrospectives} />
                                 <Route path='/register' component={Register} />
                                 <Route path='/account' component={ManageAccount} />
                                 <Route component={NotFound} />

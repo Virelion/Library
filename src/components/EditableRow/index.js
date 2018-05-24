@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import InputField from './InputField';
 import Select from './Select';
 import PasswordField from './PasswordField';
+import DateInput from './DateInput';
 import CheckBox from './CheckBox';
 import './style.css';
 
@@ -15,6 +16,7 @@ export default class EditableRow extends Component {
             case 'text': return <InputField placeholder={field.placeholder} onRef={ref => this.registerRef(ref,field.name)} className="rowItem" fieldName={field.name} value={field.value} editable={field.editable && this.state.editMode} />; 
             case 'password': return <PasswordField onRef={ref => this.registerRef(ref,field.name)} className="rowItem" fieldName={field.name} value={field.value} editable={field.editable && this.state.editMode} />; 
             case 'checkbox': return <CheckBox onRef={ref => this.registerRef(ref,field.name)} fieldName={field.name} value={field.value} editable={field.editable && this.state.editMode} />; 
+            case 'date': return  <DateInput onRef={ref => this.registerRef(ref,field.name)} className="rowItem" fieldName={field.name} value={field.value} editable={field.editable && this.state.editMode} />; 
             case 'hidden': this.myRefs[field.name] = { 
                                 getCurrentField: ()=>{ return {name: field.name, value: field.value} } ,
                                 setState: ()=>{}

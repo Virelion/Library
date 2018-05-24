@@ -2,9 +2,16 @@ class Session {
     user = 'user';
     
     callbacks = [];
+    
     getSessionItem(tag){
         return JSON.parse(sessionStorage.getItem(tag));
     };
+    
+    isAdmin(){
+        return this.getSessionItem(this.user) && 
+                this.getSessionItem(this.user).user &&
+                this.getSessionItem(this.user).user.admin;
+    }
     
     setSessionItem(tag,item){
         sessionStorage.setItem(tag,JSON.stringify(item));

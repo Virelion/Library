@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const account = require("./account");
 const user = require("./user");
 const team = require("./team");
+const retrospectives = require("./retrospectives");
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -27,5 +28,6 @@ app.use(function (req, res, next) {
 account.init(app);
 user.init(app);
 team.init(app);
+retrospectives.init(app);
 
 app.listen(9000);
