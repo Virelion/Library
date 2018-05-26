@@ -116,7 +116,7 @@ export default class EditableRow extends Component {
             </td></tr>);
         } else {
             return (
-                    <tr>
+                    <tr className={this.state.editMode?"editMode":""}>
                     {
                         this.fields.map(
                             (field,i)=>{
