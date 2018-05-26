@@ -32,7 +32,7 @@ var TeamSchema = new Mongoose.Schema({
 var RetrospectiveSchema = new Mongoose.Schema({
     _id: Mongoose.Schema.ObjectId,
     name: { type: String, required: true },
-    date: { type: Date, required: true },
+    date: { type: String, required: true },
     team: {type : Mongoose.Schema.ObjectId, ref: 'teams', required: true},
     issues: [
         {type : Mongoose.Schema.ObjectId, ref: 'issues'}

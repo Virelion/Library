@@ -25,9 +25,21 @@ export default class Retrospectives extends Management {
         this.send("/retrospective/delete",data);
     }
     
+    getFreshDate(){
+        let datetime = new Date();
+        var m = datetime.getMonth();
+        if(m<10){
+            m="0"+m;
+        }
+        return datetime.getUTCFullYear()+"-"+m+"-"+datetime.getDate();
+    }
+    
     freshItem(){
+        var date = this.getFreshDate();
+        console.log(date);
         var fields = this.supplyFields({
-            name: ""
+            name: "",
+            date: date
         },this.state.teams);
         fields.forEach((field) => field.editable = true);
         return fields;

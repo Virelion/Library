@@ -20,7 +20,7 @@ var init = function init(app){
     
     app.post('/api/retrospective/list',(req,res)=>{
         userSession.asUser(req,res,(user)=>{
-            db.Retrospective.find({team: user.team},(err,retrospectives)=>{
+            db.Retrospective.find({team: user.team}).sort({date: -1}).exec((err,retrospectives)=>{
                 if(err) res.send({message:helper.message("Failed to list retrospectives",false)});
                 res.send({
                     message:helper.message("Retrospective list",true),
@@ -42,13 +42,24 @@ var init = function init(app){
             });
         });
     });
-
     
     app.post('/api/retrospective/edit',(req,res)=>{
         userSession.asUser(req,res,(user)=>{
             let data = req.body.data;
             db.Retrospective.findById(data._id,(err,retrospective)=>{
-                
+                if(retrospective){
+                    retrospective.name = data.name;
+                    retrospective.date = data.date;
+                    retrospective.save((err)=>{
+                        if(err){
+                            res.send({message:helper.message("Failed to change retrospective",false)});
+                        } else {
+                            res.send({message:helper.message("Retrospective changed",true)});
+                        }
+                    });
+                } else {
+                    res.send({message:helper.message("Retrospective not found",false)});
+                }
             });
         });
     });
