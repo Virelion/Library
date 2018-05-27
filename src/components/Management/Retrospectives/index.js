@@ -90,7 +90,7 @@ export default class Retrospectives extends Management {
             <table>
                 <tbody>
                 {content?<EditableRow addMode={true} onConfirm={(row)=>this.addItem(row)} fields={this.freshItem()} />:null}
-                {content?<tr key="label"><th>Name</th><th></th></tr> :null}
+                {content?<tr key="label"><th>Date</th><th>Name</th><th></th><th></th></tr> :null}
                     {content}
                 </tbody>
             </table>
