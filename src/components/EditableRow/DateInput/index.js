@@ -22,7 +22,7 @@ export default class DateInput extends AbstractField {
         this.setState({value: e.target.value});
     }
 
-    render() {
+    renderField() {
         if(!this.props.editable){
             return (<input className="input" type='date' value={this.state.value} disabled />);
         } else {

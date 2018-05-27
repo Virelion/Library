@@ -22,7 +22,7 @@ export default class InputField extends AbstractField {
         this.setState({value: e.target.value});
     }
 
-    render() {
+    renderField() {
         if(!this.props.editable){
             return (<input className="input" placeholder={this.props.placeholder} type='text' value={this.state.value} disabled />);
         } else {

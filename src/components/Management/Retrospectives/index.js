@@ -36,7 +36,6 @@ export default class Retrospectives extends Management {
     
     freshItem(){
         var date = this.getFreshDate();
-        console.log(date);
         var fields = this.supplyFields({
             name: "",
             date: date
@@ -48,8 +47,8 @@ export default class Retrospectives extends Management {
     supplyFields(item,list){
         var fields = [
             { type: 'hidden', name:'_id', value: item._id},
-            { type: 'date', name:'date', value: item.date, editable: true },
-            { type: 'text', name:'name', value: item.name, editable:true},
+            { type: 'date', name:'date', value: item.date, editable: true, validation: {required: true, rules:[]}},
+            { type: 'text', name:'name', value: item.name, editable:true, validation: {required: true, rules:[]}},
         ]
         return fields;
     }

@@ -25,7 +25,7 @@ export default class UserManagement extends Management {
     supplyFields(item,list){
         var choice = item.team ? item.team : "0";
         var fields = [
-            { type: 'text', name:'_id', value: item._id, editable:false, placeholder: "Name"},
+            { type: 'text', name:'_id', value: item._id, editable:false, validation: {required: true, rules: []}},
             { type: 'password', name:'password', value: '', editable:true},
             { type: 'checkbox', name:'admin', value: item.admin, editable:true},
             { type: 'select', name:'team', value: item.team, editable:true, 

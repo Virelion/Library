@@ -27,7 +27,7 @@ export default class Select extends AbstractField {
         this.setState({value: e.target.value});
     }
 
-    render() {
+    renderField() {
         return (<select className="input" onChange={this.onValueChange.bind(this)} value={this.state.value} disabled={!this.props.editable} >
                     {Object.keys(this.props.model.list).map((key,i)=>{
                         return (<option key={key} value={key} >{this.props.model.list[key]}</option>);  

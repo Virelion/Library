@@ -24,7 +24,7 @@ export default class CheckBox extends AbstractField {
         this.setState({value: e.target.checked});
     }
 
-    render() {
+    renderField() {
         if(!this.props.editable){
             return (<input className="checkbox" type="checkbox" checked={this.state.value} disabled />);
         } else {

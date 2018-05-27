@@ -33,7 +33,7 @@ export default class TeamManagement extends Management {
     supplyFields(item,list){
         var fields = [
             { type: 'hidden', name:'_id', value: item._id},
-            { type: 'text', name:'name', value: item.name, editable:true},
+            { type: 'text', name:'name', value: item.name, editable:true, validation: {required: true, rules:[]}},
         ]
         return fields;
     }
