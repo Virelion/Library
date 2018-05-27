@@ -22,7 +22,6 @@ export default class AbstractField extends Component {
             } 
             
             this.props.validation.rules.forEach( (rule) => {
-                console.log("tim");
                 if(!rule.check(this)){
                     validateObj.valid = false;
                     this.setState({message: "Field "+this.props.fieldName+": "+rule.message});
@@ -50,7 +49,6 @@ export default class AbstractField extends Component {
     }
     
     getInvalidMessage(){
-        console.log(this.state.message);
         if(this.props.editable && this.state.message){
             return <div className="invalid-label">{this.state.message}</div>
         } else {

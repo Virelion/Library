@@ -173,7 +173,6 @@ export default class EditableRow extends Component {
     }
 
     render() {
-        console.log(this.state.messages);
         this.createComponents();
         if(this.props.addMode && !this.state.editMode){
             return (<tr className="EditableRow"><td><button  className="rowButton input" onClick={this.onChange.bind(this)} >Add</button>
