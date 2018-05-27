@@ -1,9 +1,9 @@
 .SignIn {
     margin: auto;
     width: 50vw;
-    min-width: 300px;
+    min-width: 600px;
     border: 1px solid #aaaaaa;
-    padding: 100px 50px;
+    padding: 50px 50px;
     border-radius: 10px;
     margin-top:40px;
 }
@@ -16,5 +16,27 @@
 .SignIn form input {
     width: 100%;
     padding: 10px 5px;
+    margin-bottom: 5px;
     text-align: center;
+    border-radius: 5px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.SignIn form input[type="Submit"] {
+    cursor: pointer;
+}
+
+.logoFront h1 {
+    font-size: 3em;
+    line-height: 150px;
+}
+
+.logoFront{
+    padding-bottom:60px;
+    
+}
+
+.logoFront img  {
+    margin-left: 0px !important;
 }

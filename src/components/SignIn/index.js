@@ -56,6 +56,10 @@ export default class SignIn extends Component {
         }
         return (
             <div className={this.constructor.name}  >
+                <div className="logoFront">
+                    <img alt="logo" id="article-logo" src="logo.png" /> 
+                    <h1>ScrumBox</h1>
+                </div>
                 <form onSubmit={this.signIn.bind(this)}>
                     <MessageBox message={this.state.message} />
                     <input type="text" name="user" placeholder="User name" value={this.state.user} onChange={this.handleEmailChange.bind(this)} />
