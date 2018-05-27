@@ -23,13 +23,13 @@ export default class UserManagement extends Management {
     }
     
     supplyFields(item,list){
-        var choice = item.team ? item.team : "0";
+        var choice = item.team ? item.team : "";
         var fields = [
             { type: 'text', name:'_id', value: item._id, editable:false, validation: {required: true, rules: []}},
             { type: 'password', name:'password', value: '', editable:true},
             { type: 'checkbox', name:'admin', value: item.admin, editable:true},
             { type: 'select', name:'team', value: item.team, editable:true, 
-                model: { list: list, choice: choice}}
+                model: { list: list, choice: choice}, validation: {required: true, rules: []}}
         ]
         return fields;
     }
@@ -38,8 +38,9 @@ export default class UserManagement extends Management {
         var fields = this.supplyFields({
             _id: "",
             admin: false,
-            team: "0"
+            team: ""
         },this.state.teams);
+        fields[1].validation = {required: true, rules: []};
         fields.forEach((field) => field.editable = true);
         return fields;
     }

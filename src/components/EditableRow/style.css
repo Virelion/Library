@@ -19,3 +19,15 @@
 .InnerMessages{
     clear:both;
 }
+
+.invalid-label {
+    font-size: 0.75em;
+    line-height: 0.75em;
+    color: red;
+    margin-top: 0;
+    padding: 5px;
+}
+
+.required input {
+    border: 1px yellow solid;
+}

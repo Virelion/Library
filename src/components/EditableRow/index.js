@@ -87,7 +87,6 @@ export default class EditableRow extends Component {
                 messages.push.apply(messages,validateObj.messages);
             }
         });
-        this.setState({messages: messages});
         return valid;
     }
 
@@ -177,11 +176,11 @@ export default class EditableRow extends Component {
         console.log(this.state.messages);
         this.createComponents();
         if(this.props.addMode && !this.state.editMode){
-            return (<tr><td><button  className="rowButton input" onClick={this.onChange.bind(this)} >Add</button>
+            return (<tr className="EditableRow"><td><button  className="rowButton input" onClick={this.onChange.bind(this)} >Add</button>
             </td></tr>);
         } else {
             return (
-                    <tr className={this.state.editMode?"editMode":"reviewMode"}>
+                    <tr className={"EditableRow "+(this.state.editMode?"editMode":"reviewMode") }>
                         {this.renderFields()} 
                         {this.renderButtons()}
                         {this.renderOnDeleteButton()}

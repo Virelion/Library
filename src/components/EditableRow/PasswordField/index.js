@@ -14,12 +14,10 @@ export default class PasswordField extends AbstractField {
 
     onValueChange(e) {
         this.setState({value: e.target.value});
-    //    this.validate();
     }
     
     onRepeatChange(e){
         this.setState({repeat: e.target.value});
-      //  this.validate();
     }
     
     validatePasswords(){

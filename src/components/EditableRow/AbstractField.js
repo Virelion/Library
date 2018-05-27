@@ -18,22 +18,41 @@ export default class AbstractField extends Component {
         } else {
             if(this.props.validation.required && this.state.value === ""){
                 validateObj.valid = false;
-                validateObj.messages.push("Required field cannot be empty");
-            }
+                this.setState({message: "Required field cannot be empty"});
+            } 
+            
             this.props.validation.rules.forEach( (rule) => {
                 console.log("tim");
                 if(!rule.check(this)){
                     validateObj.valid = false;
-                    validateObj.messages.push("Field "+this.props.fieldName+": "+rule.message);
+                    this.setState({message: "Field "+this.props.fieldName+": "+rule.message});
                 }
             });
+            
+            if(validateObj.valid){
+                this.clearMessage();
+            }
+            
             return validateObj;
         }
     }
     
     getRequiredIndicator(){
         if(this.props.validation && this.props.validation.required && this.props.editable){
-            return <span className="requiredMark">*</span>;
+            return "required";
+        } else {
+           return "";
+        }
+    }
+    
+    clearMessage(){
+        this.setState({message: false});
+    }
+    
+    getInvalidMessage(){
+        console.log(this.state.message);
+        if(this.props.editable && this.state.message){
+            return <div className="invalid-label">{this.state.message}</div>
         } else {
             return (null);
         }
@@ -52,6 +71,6 @@ export default class AbstractField extends Component {
     }
     
     render(){
-        return <span>{this.renderField()}{this.getRequiredIndicator()}</span>
+        return <span className={this.getRequiredIndicator()}>{this.renderField()}{this.getInvalidMessage()}</span>
     }
 }
