@@ -3,21 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/App/index.js</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/index.js</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/Management/TeamManagement/index.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/PasswordField/index.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/AbstractField.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/server/team.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/Management/UserManagement/style.css</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/style.css</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/Select/style.css</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/server/db.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/server/retrospectives.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/DateInput/index.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/CheckBox/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/server/user.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/Management/Management.js</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/Management/UserManagement/index.js</file>
-            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/InputField/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/Retrospective/index.js</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/Management/Retrospectives/index.js</file>
+            <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/style.css</file>
             <file>file:/D:/IdeaProjects/Scrumbox/src/components/EditableRow/Select/index.js</file>
         </group>
     </open-files>

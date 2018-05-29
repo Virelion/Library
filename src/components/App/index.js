@@ -12,6 +12,7 @@ import Register from './../Register' ;
 import Flash from './../Flash' ;
 import SignIn from './../SignIn' ;
 import ManageAccount from './../ManageAccount' ;
+import Retrospective from './../Retrospective' ;
 import Session from './../../Session';
 import './style.css';
 
@@ -58,6 +59,7 @@ export default class App extends Component {
                                 <Route path='/teams' component={TeamManagement} />
                                 <Route path='/users' component={UserManagement} />
                                 <Route path='/retrospectives' component={Retrospectives} />
+                                <Route path='/retrospective/:id' component={Retrospective} />
                                 <Route path='/register' component={Register} />
                                 <Route path='/account' component={ManageAccount} />
                                 <Route component={NotFound} />

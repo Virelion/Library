@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import InputField from './InputField';
 import Select from './Select';
 import PasswordField from './PasswordField';
@@ -29,6 +30,8 @@ export default class EditableRow extends Component {
                                 setState: ()=>{}
                             }; 
                 return null; 
+            case 'link':
+                return <Link className="link rowButton" to={field.link}>{field.name}</Link>
             default: return undefined;
         }
     }
