@@ -55,13 +55,18 @@ var init = function init(app){
     
     app.post('/api/user/edit',(req,res)=>{
         userSession.asAdmin(req,res,(admin)=>{
-            db.User.findById(req.body.data._id,(err,user)=>{
+            let data = req.body.data;
+            db.User.findById(data._id,(err,user)=>{
                 if(user) {
-                    user.admin = req.body.data.admin;
-                    if(req.body.data.team==="0" || req.body.data.team===0){
+                    user.admin = data.admin;
+                    if(data.team==="0" || data.team===0){
                         user.team = undefined;
                     } else {
                         user.team = req.body.data.team;
+                    }
+                    
+                    if(data.password!==""){
+                        user.hash = bcrypt.hashSync(data.password);
                     }
                     user.save((err)=>{
                         if(err){

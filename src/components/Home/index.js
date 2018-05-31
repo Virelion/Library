@@ -20,12 +20,12 @@ export default class App extends Component {
                     </p>
                     <p>
                         Here you can:
+                    </p>
                         <ul>
                             <li>create space for your team</li>
                             <li>prepare retrospective</li>
                             <li>vote for issues</li>
                         </ul>
-                    </p>
                 </div>
             </div>
         );
