@@ -31,7 +31,7 @@ export default class EditableRow extends Component {
                             }; 
                 return null; 
             case 'link':
-                return <Link className="link rowButton" to={field.link}>{field.name}</Link>
+                return !this.props.addMode?<Link className="link rowButton" to={field.link}>{field.name}</Link>:(null)
             default: return undefined;
         }
     }

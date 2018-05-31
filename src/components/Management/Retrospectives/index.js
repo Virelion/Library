@@ -26,7 +26,7 @@ export default class Retrospectives extends Management {
     
     getFreshDate(){
         let datetime = new Date();
-        var m = datetime.getMonth();
+        var m = datetime.getMonth()+1;
         if(m<10){
             m="0"+m;
         }
@@ -35,6 +35,7 @@ export default class Retrospectives extends Management {
     
     freshItem(){
         var date = this.getFreshDate();
+        console.log(date);
         var fields = this.supplyFields({
             name: "",
             date: date

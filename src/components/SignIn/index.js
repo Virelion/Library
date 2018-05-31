@@ -17,10 +17,10 @@ export default class SignIn extends Component {
             password: "",
             message: false,
             logged: false
-        }
+        };
     }
 
-    handleEmailChange(e) {
+    handleLoginChange(e) {
         this.setState({user: e.target.value});
     }
     
@@ -50,23 +50,24 @@ export default class SignIn extends Component {
     }
 
     render() {
-        Helper.title.set("Sign in");
         if(this.state.logged){
             return (<Redirect to="/" />);
-        }
-        return (
-            <div className={this.constructor.name}  >
-                <div className="logoFront">
-                    <img alt="logo" id="article-logo" src="logo.png" /> 
-                    <h1>ScrumBox</h1>
+        } else {
+            Helper.title.set("Sign in");
+            return (
+                <div className={this.constructor.name}  >
+                    <div className="logoFront">
+                        <img alt="logo" id="article-logo" src="logo.png" /> 
+                        <h1>ScrumBox</h1>
+                    </div>
+                    <form onSubmit={this.signIn.bind(this)}>
+                        <MessageBox message={this.state.message} />
+                        <input type="text" name="user" placeholder="User name" value={this.state.user} onChange={this.handleLoginChange.bind(this)} />
+                        <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange.bind(this)}/>
+                        <input type="submit" value="Sign in" />
+                    </form>
                 </div>
-                <form onSubmit={this.signIn.bind(this)}>
-                    <MessageBox message={this.state.message} />
-                    <input type="text" name="user" placeholder="User name" value={this.state.user} onChange={this.handleEmailChange.bind(this)} />
-                    <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange.bind(this)}/>
-                    <input type="submit" value="Sign in" />
-                </form>
-            </div>
-        );
+            );
+        }
     }
 };
