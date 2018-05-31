@@ -1,80 +1,79 @@
-import React from 'react';
+import React, { Component } from 'react';
+import './style.css';
 import MessageBox from './../../MessageBox';
 import EditableRow from './../../EditableRow';
 import Management from './../Management';
 import Helper from './../../../Helper';
 import './style.css';
 
-export default class Retrospectives extends Management {
+export default class Retrospective extends Management {
     static propTypes = {}
     static defaultProps = {}
-    
     state = {
+        items: false,
+        types: false
     }
     
-    editItem(data){
-        this.send("/retrospective/edit",data);
+    componentDidMount(){
+        this.refresh();
     }
-    
-    addItem(data){
-        this.send("/retrospective/create",data);
-    }
-    
-    deleteItem(data){
-        this.send("/retrospective/delete",data);
-    }
-    
-    getFreshDate(){
-        let datetime = new Date();
-        var m = datetime.getMonth()+1;
-        if(m<10){
-            m="0"+m;
-        }
-        return datetime.getUTCFullYear()+"-"+m+"-"+datetime.getDate();
-    }
-    
-    freshItem(){
-        var date = this.getFreshDate();
-        var fields = this.supplyFields({
-            name: "",
-            date: date
-        },this.state.teams);
-        fields.forEach((field) => field.editable = true);
-        return fields;
-    }
+    /*
+     * _id: Mongoose.Schema.ObjectId,
+        name: { type: String, required: true },
+        description: { type: String, required: true },
+        type: issueTypes,
+     */
     
     supplyFields(item,list){
         var fields = [
             { type: 'hidden', name:'_id', value: item._id},
-            { type: 'date', name:'date', value: item.date, editable: true, validation: {required: true, rules:[]}},
+            { type: 'hidden', name:'retrospective', value: this.props.match.params.id},
             { type: 'text', name:'name', value: item.name, editable:true, validation: {required: true, rules:[]}},
-            { type: 'link', name:'Board', link: "retrospective/"+item._id },
+            { type: 'textarea', name: 'description', value: item.description, editable: true },
+            { type: 'select', name:'type', value: item.type, editable:true, 
+                model: { list: this.state.types, choice: item.type}, validation: {required: true, rules: []}}
         ]
         return fields;
     }
     
-    constructor(props){
-        super(props);
-        this.state = {
-            teams: false,
-            message: false,
-            items: false
-        }
+    addItem(data){
+        this.send("/issue/create",data);
+    }
+    
+    deleteItem(data){
+        this.send("/issue/delete",data);
+    }
+    
+    editItem(data){
+        this.send("/issue/edit",data);
+    }
+    
+    freshItem(){
+        var fields = this.supplyFields({
+            name: "",
+            description: "",
+            type: this.state.types[0]
+        },this.state.types);
+        fields.forEach((field) => field.editable = true);
+        return fields;
     }
     
     refresh(){
-        Helper.postWithToken("/retrospective/list",{})
+        let id = this.props.match.params.id;
+        Helper.postWithToken("/issue/list",{retrospective: id})
                 .then(res => res.json())
                 .then(data => {
                     if(data.message.success){
-                        this.setState({items: data.retrospectives})
+                        this.setState({items: data.issues, types: data.issueTypes})
                     } else {
                         this.setState({message: data.message})
                     }
                 }).catch(()=>this.setState({message:Helper.message("Cannot connect",false)}));
     }
-    
+
     render() {
+        console.log("Items",this.state.items);
+        console.log("IssueTypes",this.state.types);
         var content;
         if(this.state.items){
             content = (this.state.items.map(item => (

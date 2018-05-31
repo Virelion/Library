@@ -4,6 +4,7 @@ import InputField from './InputField';
 import Select from './Select';
 import PasswordField from './PasswordField';
 import DateInput from './DateInput';
+import TextArea from './TextArea';
 import MessageBox from './../MessageBox';
 import CheckBox from './CheckBox';
 import Helper from './../../Helper';
@@ -17,6 +18,7 @@ export default class EditableRow extends Component {
         switch(field.type){
             case 'select': return <Select validation={field.validation} onRef={ref => this.registerRef(ref,field.name)} className="rowItem" fieldName={field.name} model={field.model} value={field.value} editable={field.editable && this.state.editMode} />;
             case 'text': return <InputField validation={field.validation} placeholder={field.placeholder} onRef={ref => this.registerRef(ref,field.name)} className="rowItem" fieldName={field.name} value={field.value} editable={field.editable && this.state.editMode} />; 
+            case 'textarea': return <TextArea validation={field.validation} placeholder={field.placeholder} onRef={ref => this.registerRef(ref,field.name)} className="rowItem" fieldName={field.name} value={field.value} editable={field.editable && this.state.editMode} />; 
             case 'password': 
                 if(!field.validation){
                     field.validation = {required: false, rules: [{message: "Passwords are not the same", check: (field) => field.validatePasswords()}]};

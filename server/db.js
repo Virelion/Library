@@ -39,12 +39,17 @@ var RetrospectiveSchema = new Mongoose.Schema({
     ]
 });
 
+var issueTypes = ['SAD','HAPPY','ANGRY','PROUD','CONFUSED'];
+
 var IssueSchema = new Mongoose.Schema({
     _id: Mongoose.Schema.ObjectId,
     name: { type: String, required: true },
     description: { type: String, required: true },
-    type: ['SAD','HAPPY','ANGRY','PROUD','CONFUSED'],
-    retrospective: {type : Mongoose.Schema.ObjectId, ref: 'retrospectives'}
+    type: issueTypes,
+    retrospective: {type : Mongoose.Schema.ObjectId, ref: 'retrospectives'},
+    upVote: [
+        {type : Mongoose.Schema.ObjectId, ref: 'users'}
+    ]
 });
 
 var newID = ()=>{
@@ -61,5 +66,6 @@ module.exports ={
     Team: Team,
     Retrospective: Retrospective,
     Issue: Issue,
+    IssueTypes: issueTypes,
     newID: newID
 };

@@ -12,7 +12,7 @@ import Register from './../Register' ;
 import Flash from './../Flash' ;
 import SignIn from './../SignIn' ;
 import ManageAccount from './../ManageAccount' ;
-import Retrospective from './../Retrospective' ;
+import Retrospective from './../Management/Retrospective' ;
 import Session from './../../Session';
 import './style.css';
 

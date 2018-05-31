@@ -10,9 +10,7 @@ const db = require('./db');
 const helper = require('./helper');
 
 const sign = (payload)=>{
-    return jwt.sign(payload, config.secret, {
-                expiresIn: 1440
-            });
+    return jwt.sign(payload, config.secret, {});
 };
 
 const decode = (req)=>{
