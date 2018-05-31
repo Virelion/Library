@@ -1,0 +1,23 @@
+.description textArea {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100px;
+    max-height: 100px;
+}
+
+.IssueItem {
+    margin: 40px 0px;
+}
+
+.IssueItem input{
+    width: 70%;
+}
+.IssueItem select{
+    width: 28%;
+    float: right;
+}
+
+.IssueItem .controlButtons{
+    float: right;
+}

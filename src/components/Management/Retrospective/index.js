@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 import MessageBox from './../../MessageBox';
-import EditableRow from './../../EditableRow';
+import IssueItem from './../../EditableRow/IssueItem';
 import Management from './../Management';
 import Helper from './../../../Helper';
 import './style.css';
@@ -77,7 +77,7 @@ export default class Retrospective extends Management {
         var content;
         if(this.state.items){
             content = (this.state.items.map(item => (
-                                <EditableRow key={item._id} onDelete={()=>this.deleteItem(item)} onConfirm={(item)=>this.editItem(item)} fields={this.supplyFields(item,this.state.teams)} />
+                                <IssueItem key={item._id} onDelete={()=>this.deleteItem(item)} onConfirm={(item)=>this.editItem(item)} fields={this.supplyFields(item,this.state.teams)} />
                                
                             )));
         } else {
@@ -86,13 +86,8 @@ export default class Retrospective extends Management {
         return (
         <div className={this.constructor.name} >
             <MessageBox message={this.state.message} />
-            <table>
-                <tbody>
-                {content?<EditableRow addMode={true} onConfirm={(row)=>this.addItem(row)} fields={this.freshItem()} />:null}
-                {content?<tr key="label"><th>Date</th><th>Name</th><th></th><th></th><th></th></tr> :null}
+                {content?<IssueItem addMode={true} onConfirm={(row)=>this.addItem(row)} fields={this.freshItem()} />:null}
                     {content}
-                </tbody>
-            </table>
         </div>
         );
     }
