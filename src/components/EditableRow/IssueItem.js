@@ -49,7 +49,6 @@ export default class IssueItem extends EditableRow {
     }  
     
     getIssueClass() {
-        console.log(this.fields);
         let index = 0;
         if(!(this.myRefs.type && this.myRefs.type.getCurrentField() && this.myRefs.type.getCurrentField().value))
             index= this.fields[4].props.value[0];

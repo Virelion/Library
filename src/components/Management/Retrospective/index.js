@@ -80,7 +80,6 @@ export default class Retrospective extends Management {
     }
 
     render() {
-        console.log(this);
         var content;
         if(this.state.items){
             content = (this.state.items.map(item => (
