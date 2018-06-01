@@ -2,18 +2,6 @@ const userSession = require('./userSession');
 const helper = require('./helper');
 const db = require('./db');
 
-/*
- * var IssueSchema = new Mongoose.Schema({
-    _id: Mongoose.Schema.ObjectId,
-    name: { type: String, required: true },
-    description: { type: String, required: true },
-    type: issueTypes,
-    retrospective: {type : Mongoose.Schema.ObjectId, ref: 'retrospectives'},
-    upVote: [
-        {type : Mongoose.Schema.ObjectId, ref: 'users'}
-    ]
-});
- */
 var init = function init(app){
     //Retrospectives
     app.post('/api/issue/create',(req,res)=>{

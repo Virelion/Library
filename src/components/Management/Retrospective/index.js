@@ -53,7 +53,7 @@ export default class Retrospective extends Management {
         var fields = this.supplyFields({
             name: "",
             description: "",
-            type: this.state.types[0]
+            type: "0"
         },this.state.types);
         fields.forEach((field) => field.editable = true);
         return fields;
@@ -64,8 +64,16 @@ export default class Retrospective extends Management {
         Helper.postWithToken("/issue/list",{retrospective: id})
                 .then(res => res.json())
                 .then(data => {
+                    var sorted = data.issues.sort((a,b)=>{
+                        let compare = a.type[0].localeCompare(b.type[0]);
+                        if(compare===0){
+                           return b.upVote.length - a.upVote.length;
+                        }
+                        return compare;
+                    });
+                    console.log("Sorted",sorted);
                     if(data.message.success){
-                        this.setState({items: data.issues, types: data.issueTypes})
+                        this.setState({items: sorted, types: data.issueTypes})
                     } else {
                         this.setState({message: data.message})
                     }
