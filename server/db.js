@@ -48,7 +48,7 @@ var IssueSchema = new Mongoose.Schema({
     type: issueTypes,
     retrospective: {type : Mongoose.Schema.ObjectId, ref: 'retrospectives'},
     upVote: [
-        {type : Mongoose.Schema.ObjectId, ref: 'users'}
+        {type : String, ref: 'users'}
     ]
 });
 

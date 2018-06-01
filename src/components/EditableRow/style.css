@@ -1,5 +1,6 @@
 .rowButton {
     min-width: 100px !important;
+    margin-right: 10px !important;
 }
 
 .editMode {
@@ -28,8 +29,10 @@
     padding: 5px;
 }
 
-.required input {
+.required input,
+.required textarea {
     border: 1px yellow solid;
+    box-sizing: border-box;
 }
 
 .link {

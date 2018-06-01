@@ -1,49 +1,71 @@
 import EditableRow from './index';
 import React from 'react';
+import Helper from './../../Helper';
+import Session from './../../Session';
 
 export default class IssueItem extends EditableRow {
         
-       /*     { type: 'hidden', name:'_id', value: item._id},
-            { type: 'hidden', name:'retrospective', value: this.props.match.params.id},
-            { type: 'text', name:'name', value: item.name, editable:true, validation: {required: true, rules:[]}},
-            { type: 'textarea', name: 'description', value: item.description, editable: true },
-            { type: 'select', name:'type', value: item.type, editable:true, 
-                model: { list: this.state.types, choice: item.type}, validation: {required: true, rules: []}}
-            
-         [2] name
-         [3] area
-         [4] select
-            
-    renderFields(){
-        return this.fields.map(
-                    (field,i)=>{
-                        if(field){
-                            return (<td key={i}>{field}</td>);
-                        } else {
-                            return (null);
-                        }
-                    }
-                );
-    }*/
+    upVoteButton(){
+        if(!(this.myRefs.upVote && this.myRefs.upVote.getCurrentField() && this.myRefs.upVote.getCurrentField().value))
+            return (null);
+        if(this.myRefs.upVote && this.myRefs.upVote.getCurrentField().value.includes(Session.getSessionItem(Session.user).user.name)){
+            return (
+                                <button className="rowButton input upVoted" onClick={this.withdraw.bind(this)} >{this.myRefs.upVote.getCurrentField().value.length}</button>
+                        );
+        } else {
+            return (
+                                <button className="rowButton input upVote" onClick={this.upVote.bind(this)} >{this.myRefs.upVote.getCurrentField().value.length}</button>
+                        );
+        }
+    
         
+    }
+        
+    upVote(){
+         Helper.postWithToken('/issue/upvote',{ data : {_id: this.myRefs._id.getCurrentField().value}})
+                .then(res => res.json())
+                .then(data => {
+                    this.props.refresh();
+                }).catch(()=>this.setState({message:Helper.message("Cannot connect",false)}));
+    }    
+    
+    withdraw(){
+         Helper.postWithToken('/issue/withdraw',{ data : {_id: this.myRefs._id.getCurrentField().value}})
+                .then(res => res.json())
+                .then(data => {
+                    this.props.refresh();
+                }).catch(()=>this.setState({message:Helper.message("Cannot connect",false)}));
+    }
+    
+    renderButtons(){
+          return (<span><button className="rowButton input" onClick={this.onChange.bind(this)} >{this.state.editMode ? "Confirm": "Edit"}</button>
+                  {this.state.editMode?<button  className="rowButton input" onClick={this.cancel.bind(this)} >Cancel</button>:null}  
+                          </span>
+                  );
+    }  
+    
     render(){
-        console.log("fields",this.fields);
+        this.upVoteButton();
+        console.log("fields",this.myRefs);
+        console.log("type",this.myRefs.type);
         this.createComponents();
         if(this.props.addMode && !this.state.editMode){
             return (<button  className="rowButton input" onClick={this.onChange.bind(this)} >Add</button>);
         } else {
             return (
-                    <div className="IssueItem">
-                        <div className={this.state.editMode?"editMode":"reviewMode"}>
-                            {this.fields[2]}{this.fields[4]}
+                    <div className={" IssueItem "+(this.state.editMode?"editMode":"reviewMode") } >
+                        <div>
+                            {this.fields[4]}{this.fields[2]}
                         </div>
                         <div className="description">{this.fields[3]}</div>
-                                
-                        <div className="controlButtons">
-                                {this.renderButtons()}
-                                {this.renderOnDeleteButton()}
-                        </div>
+                        
                         {this.innerMessages()}
+                        <div className="controlButtons">
+                                {this.upVoteButton()}
+                                <button className="rowButton input" onClick={this.onChange.bind(this)} >{this.state.editMode ? "Confirm": "Edit"}</button>
+                                {this.state.editMode?<button  className="rowButton input" onClick={this.cancel.bind(this)} >Cancel</button>:null}  
+                                {this.props.onDelete?<button className="rowButton input" onClick={this.delete.bind(this)} >Delete</button>:null}
+                        </div>
                     </div>
               );  
         }

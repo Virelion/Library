@@ -162,20 +162,6 @@ export default class EditableRow extends Component {
                     }
                 );
     }
-    
-    renderButtons(){
-        return (<td><button className="rowButton input" onClick={this.onChange.bind(this)} >{this.state.editMode ? "Confirm": "Edit"}</button>
-                  {this.state.editMode?<br />:null}
-                  {this.state.editMode?<button  className="rowButton input" onClick={this.cancel.bind(this)} >Cancel</button>:null}  
-                  </td>
-                  );
-    }
-    
-    renderOnDeleteButton(){
-        return (<td>
-                  {this.props.onDelete?<button className="rowButton input" onClick={this.delete.bind(this)} >Delete</button>:null}
-                  </td>);
-    }
 
     render() {
         this.createComponents();
@@ -186,8 +172,14 @@ export default class EditableRow extends Component {
             return (
                     <tr className={"EditableRow "+(this.state.editMode?"editMode":"reviewMode") }>
                         {this.renderFields()} 
-                        {this.renderButtons()}
-                        {this.renderOnDeleteButton()}
+                        <td>
+                            <button className="rowButton input" onClick={this.onChange.bind(this)} >{this.state.editMode ? "Confirm": "Edit"}</button>
+                            {this.state.editMode?<br />:null}
+                            {this.state.editMode?<button  className="rowButton input" onClick={this.cancel.bind(this)} >Cancel</button>:null}  
+                        </td>
+                        <td>
+                            {this.props.onDelete?<button className="rowButton input" onClick={this.delete.bind(this)} >Delete</button>:null}
+                        </td>
                         {this.innerMessages()}
                     </tr>
               );  

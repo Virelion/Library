@@ -1,3 +1,8 @@
+.Retrospective{
+    width: 70%;
+    margin: auto;
+}
+
 .description textArea {
     width: 100%;
     min-width: 100%;
@@ -7,17 +12,49 @@
 }
 
 .IssueItem {
-    margin: 40px 0px;
+    margin-bottom: 70px;
+    clear: both;
 }
 
-.IssueItem input{
-    width: 70%;
+.IssueItem div input{
+    width: 65%;
 }
-.IssueItem select{
-    width: 28%;
+.IssueItem div select{
+    width: 25%;
     float: right;
+}
+
+.IssueItem div {
+    
+    padding: 10px 10px;
 }
 
 .IssueItem .controlButtons{
     float: right;
+}
+
+.IssueItem .editMode {
+    padding: 10px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.IssueItem .reviewMode {
+    padding: 10px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.IssueItem .description {
+    padding: 10px 10px;
+}
+
+.SAD { background: rgba(255, 0, 0, 0.5) !important; }
+.PROUD {}
+.ANGRY {}
+.HAPPY {}
+.CONFUSED {}
+
+.upVoted {
+    color: green;
 }

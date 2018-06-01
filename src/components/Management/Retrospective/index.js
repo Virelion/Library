@@ -29,9 +29,10 @@ export default class Retrospective extends Management {
             { type: 'hidden', name:'_id', value: item._id},
             { type: 'hidden', name:'retrospective', value: this.props.match.params.id},
             { type: 'text', name:'name', value: item.name, editable:true, validation: {required: true, rules:[]}},
-            { type: 'textarea', name: 'description', value: item.description, editable: true },
+            { type: 'textarea', name: 'description', value: item.description, editable: true, validation: {required: true, rules: []} },
             { type: 'select', name:'type', value: item.type, editable:true, 
-                model: { list: this.state.types, choice: item.type}, validation: {required: true, rules: []}}
+                model: { list: this.state.types, choice: item.type}, validation: {required: true, rules: []}},
+            { type: 'hidden', name:'upVote', value: item.upVote}
         ]
         return fields;
     }
@@ -72,12 +73,10 @@ export default class Retrospective extends Management {
     }
 
     render() {
-        console.log("Items",this.state.items);
-        console.log("IssueTypes",this.state.types);
         var content;
         if(this.state.items){
             content = (this.state.items.map(item => (
-                                <IssueItem key={item._id} onDelete={()=>this.deleteItem(item)} onConfirm={(item)=>this.editItem(item)} fields={this.supplyFields(item,this.state.teams)} />
+                                <IssueItem key={item._id} refresh={()=>this.refresh()} onDelete={()=>this.deleteItem(item)} onConfirm={(item)=>this.editItem(item)} fields={this.supplyFields(item,this.state.teams)} />
                                
                             )));
         } else {
