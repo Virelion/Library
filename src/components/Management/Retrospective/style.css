@@ -14,6 +14,7 @@
 .IssueItem {
     margin-bottom: 70px;
     clear: both;
+    border-radius: 5px;
 }
 
 .IssueItem div input{
@@ -25,7 +26,6 @@
 }
 
 .IssueItem div {
-    
     padding: 10px 10px;
 }
 
@@ -33,27 +33,15 @@
     float: right;
 }
 
-.IssueItem .editMode {
-    padding: 10px 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
-.IssueItem .reviewMode {
-    padding: 10px 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
 .IssueItem .description {
     padding: 10px 10px;
 }
 
-.SAD { background: rgba(255, 0, 0, 0.5) !important; }
-.PROUD {}
-.ANGRY {}
-.HAPPY {}
-.CONFUSED {}
+.SAD { background: rgba(0, 0, 255, 0.5); }
+.PROUD { background: rgba(255, 200, 0, 0.5); }
+.ANGRY { background: rgba(255, 0, 0, 0.5); }
+.HAPPY { background: rgba(0,200, 0, 0.5); }
+.CONFUSED { background: rgba(150, 70, 200, 0.5); }
 
 .upVoted {
     color: green;

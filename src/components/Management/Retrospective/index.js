@@ -71,7 +71,6 @@ export default class Retrospective extends Management {
                         }
                         return compare;
                     });
-                    console.log("Sorted",sorted);
                     if(data.message.success){
                         this.setState({items: sorted, types: data.issueTypes})
                     } else {

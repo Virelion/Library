@@ -44,16 +44,24 @@ export default class IssueItem extends EditableRow {
                   );
     }  
     
+    getIssueClass() {
+        console.log(this.fields);
+        let index = 0;
+        if(!(this.myRefs.type && this.myRefs.type.getCurrentField() && this.myRefs.type.getCurrentField().value))
+            index= this.fields[4].props.value[0];
+        else {
+            index= this.myRefs.type.getCurrentField().value[0];
+        }
+        return this.fields[4].props.model.list[index];
+    }
+
     render(){
-        this.upVoteButton();
-        console.log("fields",this.myRefs);
-        console.log("type",this.myRefs.type);
         this.createComponents();
         if(this.props.addMode && !this.state.editMode){
             return (<button  className="rowButton input" onClick={this.onChange.bind(this)} >Add</button>);
         } else {
             return (
-                    <div className={" IssueItem "+(this.state.editMode?"editMode":"reviewMode") } >
+                    <div className={this.getIssueClass()+" IssueItem "+(this.state.editMode?"editMode":"reviewMode") } >
                         <div>
                             {this.fields[4]}{this.fields[2]}
                         </div>
