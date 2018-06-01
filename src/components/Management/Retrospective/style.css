@@ -18,7 +18,7 @@
 }
 
 .IssueItem div input{
-    width: 65%;
+    width: 45%;
 }
 .IssueItem div select{
     width: 25%;
@@ -43,6 +43,16 @@
 .HAPPY { background: rgba(0,200, 0, 0.5); }
 .CONFUSED { background: rgba(150, 70, 200, 0.5); }
 
-.upVoted {
+.upVoted button{
     color: green;
+    font-weight: bold;
+}
+
+.upVoted, .upVote {
+    float:right;
+    margin-left: 10px;
+}
+
+.controlBoard{
+    display: inline-block;
 }

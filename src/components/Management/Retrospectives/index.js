@@ -49,6 +49,7 @@ export default class Retrospectives extends Management {
             { type: 'date', name:'date', value: item.date, editable: true, validation: {required: true, rules:[]}},
             { type: 'text', name:'name', value: item.name, editable:true, validation: {required: true, rules:[]}},
             { type: 'link', name:'Board', link: "retrospective/"+item._id },
+            { type: 'link', name:'Presentation', link: "presentation/"+item._id },
         ]
         return fields;
     }
@@ -90,7 +91,7 @@ export default class Retrospectives extends Management {
             <table>
                 <tbody>
                 {content?<EditableRow addMode={true} onConfirm={(row)=>this.addItem(row)} fields={this.freshItem()} />:null}
-                {content?<tr key="label"><th>Date</th><th>Name</th><th></th><th></th><th></th></tr> :null}
+                {content?<tr key="label"><th>Date</th><th>Name</th><th></th><th></th><th></th><th></th></tr> :null}
                     {content}
                 </tbody>
             </table>

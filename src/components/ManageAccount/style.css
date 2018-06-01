@@ -3,3 +3,11 @@
     float:right;
     height: 100%;
 }
+
+.ManageAccount input{
+     display: block;
+     padding: 5px 10px;
+     border-radius: 5px;
+     border:none;
+     margin-top: 5px;
+}

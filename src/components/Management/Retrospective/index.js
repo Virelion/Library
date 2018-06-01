@@ -80,10 +80,11 @@ export default class Retrospective extends Management {
     }
 
     render() {
+        console.log(this);
         var content;
         if(this.state.items){
             content = (this.state.items.map(item => (
-                                <IssueItem key={item._id} refresh={()=>this.refresh()} onDelete={()=>this.deleteItem(item)} onConfirm={(item)=>this.editItem(item)} fields={this.supplyFields(item,this.state.teams)} />
+                                <IssueItem key={item._id} presentation={this.props.presentation} refresh={()=>this.refresh()} onDelete={()=>this.deleteItem(item)} onConfirm={(item)=>this.editItem(item)} fields={this.supplyFields(item,this.state.teams)} />
                                
                             )));
         } else {
@@ -92,7 +93,7 @@ export default class Retrospective extends Management {
         return (
         <div className={this.constructor.name} >
             <MessageBox message={this.state.message} />
-                {content?<IssueItem addMode={true} onConfirm={(row)=>this.addItem(row)} fields={this.freshItem()} />:null}
+                {content&&!this.props.presentation?<IssueItem addMode={true} onConfirm={(row)=>this.addItem(row)} fields={this.freshItem()} />:null}
                     {content}
         </div>
         );

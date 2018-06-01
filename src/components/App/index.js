@@ -60,6 +60,8 @@ export default class App extends Component {
                                 <Route path='/users' component={UserManagement} />
                                 <Route path='/retrospectives' component={Retrospectives} />
                                 <Route path='/retrospective/:id' component={Retrospective} />
+                                <Route path='/presentation/:id'  render={(props) => ( <Retrospective presentation="true"  {...props} /> ) } />
+                                
                                 <Route path='/register' component={Register} />
                                 <Route path='/account' component={ManageAccount} />
                                 <Route component={NotFound} />
