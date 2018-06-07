@@ -27,10 +27,14 @@ export default class Retrospectives extends Management {
     getFreshDate(){
         let datetime = new Date();
         var m = datetime.getMonth()+1;
+		var d = datetime.getDate();
         if(m<10){
             m="0"+m;
         }
-        return datetime.getUTCFullYear()+"-"+m+"-"+datetime.getDate();
+		if(d<10){
+            d="0"+d;
+        }
+        return datetime.getUTCFullYear()+"-"+m+"-"+d;
     }
     
     freshItem(){
